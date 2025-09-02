@@ -230,7 +230,8 @@
   background: #f3f4f6;
   border: 2px dashed #9ca3af;
   border-radius: 10px;
-  padding: 40px;
+  padding: 100px;
+  height: 300px;
   text-align: center;
   margin-bottom: 20px;
 }
@@ -270,64 +271,69 @@
   background: #1d4ed8;
 }
 
-/* Video Section */
-#transport-content .video-container {
+
+/* Video Section Flex Row */
+#video-transport .video-row {
+  display: flex;
+  gap: 40px; /* space between video and selection */
+  flex-wrap: wrap; /* responsive on small screens */
+}
+
+/* Main video styling */
+#video-transport .video-container {
+  flex: 2; /* bigger area for main video */
   background: #f9fafb;
   border-radius: 10px;
   padding: 30px;
   text-align: center;
-  margin-bottom: 20px;
 }
 
-#transport-content .video-container i {
-  font-size: 3rem;
-  color: #60a5fa;
-  margin-bottom: 10px;
-}
-
-#transport-content .video-container p {
-  font-size: 1rem;
-  color: #374151;
-}
-
-/* Video Selection Grid */
-#transport-content .video-selection {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+/* Video selection (right side) */
+#video-transport .video-selection {
+  flex: 1; /* smaller than main video */
+  display: flex;
+  flex-direction: column;
   gap: 16px;
-  margin-top: 20px;
 }
 
-#transport-content .video-option {
+/* Video options */
+#video-transport .video-option {
   background: #f3f4f6;
-  padding: 18px;
+  padding: 1px;
   border-radius: 8px;
   text-align: center;
   transition: transform 0.2s, background 0.3s;
   cursor: pointer;
 }
 
-#transport-content .video-option:hover {
+#video-transport .video-option:hover {
   transform: translateY(-3px);
   background: #e5e7eb;
 }
 
-#transport-content .video-option i {
+#video-transport .video-option i {
   font-size: 1.8rem;
   color: #2563eb;
   margin-bottom: 8px;
 }
 
-#transport-content .video-option h4 {
+#video-transport .video-option h4 {
   font-size: 1rem;
   font-weight: 600;
   margin-bottom: 4px;
   color: #111827;
 }
 
-#transport-content .video-option p {
+#video-transport .video-option p {
   font-size: 0.9rem;
   color: #4b5563;
+}
+
+/* Responsive for smaller screens */
+@media (max-width: 768px) {
+  #video-transport .video-row {
+    flex-direction: column;
+  }
 }
 
 /* Back Button */
@@ -536,46 +542,60 @@
   </div>
 
   <!-- Video Section -->
-  <div id="video-transport" class="local-section">
-    <h3><i class="fas fa-video"></i> Video Resources</h3>
+<div id="video-transport" class="local-section">
+  <h3><i class="fas fa-video"></i> Video Resources</h3>
+  <div class="video-row">
+    <!-- Main video -->
     <div class="video-container">
-      <div>
-        <i class="fas fa-play-circle" style="font-size: 3rem; color: #60a5fa;"></i>
-        <p>Transport Management Video</p>
-      </div>
+      <video controls width="100%" poster="./assets/video-poster.jpg">
+        <source src="./assets/main-video.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+      <p>Transport Management Video</p>
     </div>
+
+    <!-- Video selection options -->
     <div class="video-selection">
       <div class="video-option">
-        <i class="fas fa-play-circle"></i>
-        <h4>Introduction</h4>
-        <p>System overview</p>
+        <video controls width="100%" poster="./assets/intro-poster.jpg">
+          <source src="./assets/intro.mp4" type="video/mp4">
+        </video>
+        
       </div>
+
       <div class="video-option">
-        <i class="fas fa-cogs"></i>
-        <h4>How to Use</h4>
-        <p>User guide</p>
+        <video controls width="100%" poster="./assets/howto-poster.jpg">
+          <source src="./assets/howto.mp4" type="video/mp4">
+        </video>
+        
       </div>
+
       <div class="video-option">
-        <i class="fas fa-chart-line"></i>
-        <h4>Features</h4>
-        <p>Key capabilities</p>
+        <video controls width="100%" poster="./assets/features-poster.jpg">
+          <source src="./assets/features.mp4" type="video/mp4">
+        </video>
+       
       </div>
+
       <div class="video-option">
-        <i class="fas fa-question-circle"></i>
-        <h4>Support</h4>
-        <p>Help resources</p>
+        <video controls width="100%" poster="./assets/support-poster.jpg">
+          <source src="./assets/support.mp4" type="video/mp4">
+        </video>
+        
       </div>
     </div>
   </div>
+</div>
+
 
   <button class="back-btn" onclick="hideService('transport')">
     <i class="fas fa-arrow-left"></i> Back to Services
   </button>
 </div>
 
-  <footer>
+  <!-- <footer>
     <p>© 2025 Mutu Solutions. All rights reserved.</p>
-  </footer>
+  </footer> -->
 
   <script>
     // Show specific service content
