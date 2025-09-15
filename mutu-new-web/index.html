@@ -29,32 +29,35 @@
     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
   </section>
 
-  <!-- Transport Section -->
   <section id="transport" class="transport-system">
-    <div class="transport-container">
-      <div class="transport-text">
+  <div class="transport-inner">
+    <!-- LEFT: stacked text steps -->
+    <div class="transport-left">
+      <div class="step">
         <h3>Ground Transportation</h3>
         <p>Efficient ground transport network connecting cities and regions.</p>
       </div>
-      <div class="transport-animation"></div>
-    </div>
 
-    <div class="transport-container">
-      <div class="transport-text">
+      <div class="step">
         <h3>Shipping Transportation</h3>
-        <p>Efficient shipping transport network connecting cities and regions.</p>
+        <p>Efficient shipping transport network connecting ports and harbors.</p>
       </div>
-      <div class="transport-animation"></div>
+
+      <div class="step">
+        <h3>Air Transportation</h3>
+        <p>Fast and reliable air shipping connecting global hubs.</p>
+      </div>
     </div>
 
-    <div class="transport-container">
-      <div class="transport-text">
-        <h3>Air Transportation</h3>
-        <p>Efficient air transport network connecting cities and regions.</p>
-      </div>
-      <div class="transport-animation"></div>
+    <!-- RIGHT: fixed video / Lottie area. Each .anim is its own Lottie container -->
+    <div class="transport-right">
+      <div class="anim" id="anim-0"></div>
+      <div class="anim" id="anim-1"></div>
+      <div class="anim" id="anim-2"></div>
     </div>
-  </section>
+  </div>
+</section>
+
 
   <!-- Scripts -->
   <script src="https://unpkg.com/gsap@3/dist/gsap.min.js"></script>

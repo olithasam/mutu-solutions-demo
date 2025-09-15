@@ -73,40 +73,102 @@ nav .logo a {
   color: #ddd;
 }
 
+
+
+
+
+
+
+/* Transport: two-column pinned scrollytelling */
 #transport {
   position: relative;
   width: 100%;
-  min-height: 100vh; /* let GSAP pin handle the scroll length */
-  background: #000;
+  height: 100vh;               /* pinned full viewport height */
+  overflow: hidden;
+  background: linear-gradient(135deg, #0a0a0a, #141414);
+  color: #fff;
+}
+
+.transport-inner {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  padding: 4rem;
+}
+
+/* LEFT: text steps stack on top of each other (centered vertically) */
+.transport-left {
+  width: 50%;
+  position: relative;
+  height: 100%;
+  display: block;
+  padding-right: 2rem;
+}
+
+.step {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%) translateY(40px);
+  opacity: 0;
+  width: 100%;
+  transition: transform 0.6s ease, opacity 0.6s ease;
+  max-width: 600px;
+}
+
+.step h3 {
+  font-size: 2.4rem;
+  margin-bottom: 1rem;
+  color: #00d4ff;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+}
+
+.step p {
+  color: #ddd;
+  line-height: 1.6;
+  font-size: 1.05rem;
+}
+
+/* visible step */
+.step.active {
+  opacity: 1;
+  transform: translateY(-50%) translateY(0);
+}
+
+/* RIGHT: the fixed video area; individual .anim elements stacked and toggled */
+.transport-right {
+  width: 50%;
+  position: relative;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-left: 2rem;
+}
+
+.anim {
+  position: absolute;
+  width: 100%;
+  height: 80%;
+  display: none;      /* only the active animation is shown */
+  align-items: center;
+  justify-content: center;
+  border-radius: 14px;
+  background: rgba(255,255,255,0.03);
+  box-shadow: 0 8px 40px rgba(0,0,0,0.6);
   overflow: hidden;
 }
 
-.transport-container {
-  position: relative;
-  width: 100%;
-  height: 100vh;
+.anim.active {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 2em;
-  opacity: 0;
-  transition: opacity 0.6s ease;
 }
 
-
-.transport-container.active {
-  opacity: 1;
-  z-index: 1; /* ensure active one shows on top */
-}
-
-
-.transport-text {
-  width: 45%;
-  padding-right: 2em;
-}
-
-.transport-animation {
-  width: 50%;
-  height: 80%;
-  position: relative;
+/* Responsiveness */
+@media (max-width: 900px) {
+  .transport-inner { flex-direction: column; padding: 2rem; }
+  .transport-left, .transport-right { width: 100%; }
+  .transport-right { margin-top: 2rem; }
+  .anim { height: 320px; }
 }
