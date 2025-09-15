@@ -1,0 +1,174 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #000;
+  font-family: "PP Noto Sans", sans-serif;
+  color: #fff;
+}
+
+/* Navbar */
+nav {
+  position: fixed;
+  top: 0;
+  width: 100vw;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2em;
+  z-index: 5;
+}
+nav a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 500;
+}
+nav .logo a {
+  font-size: 28px;
+}
+
+/* Hero Lottie */
+.lottie-container {
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
+}
+.animation {
+  width: 100%;
+  height: 100%;
+}
+
+/* About Section */
+.about {
+  background: #111;
+  color: #fff;
+  padding: 8em 2em;
+  text-align: center;
+  min-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 1s ease, transform 1s ease;
+}
+.about.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.about h2 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  color: #00d4ff;
+}
+.about p {
+  font-size: 1.2rem;
+  max-width: 700px;
+  line-height: 1.8;
+  color: #ddd;
+}
+
+
+
+
+
+
+
+/* Transport: two-column pinned scrollytelling */
+#transport {
+  position: relative;
+  width: 100%;
+  height: 100vh;               /* pinned full viewport height */
+  overflow: hidden;
+  background: linear-gradient(135deg, #0a0a0a, #141414);
+  color: #fff;
+}
+
+.transport-inner {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  padding: 4rem;
+}
+
+/* LEFT: text steps stack on top of each other (centered vertically) */
+.transport-left {
+  width: 50%;
+  position: relative;
+  height: 100%;
+  display: block;
+  padding-right: 2rem;
+}
+
+.step {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%) translateY(40px);
+  opacity: 0;
+  width: 100%;
+  transition: transform 0.6s ease, opacity 0.6s ease;
+  max-width: 600px;
+}
+
+.step h3 {
+  font-size: 2.4rem;
+  margin-bottom: 1rem;
+  color: #00d4ff;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+}
+
+.step p {
+  color: #ddd;
+  line-height: 1.6;
+  font-size: 1.05rem;
+}
+
+/* visible step */
+.step.active {
+  opacity: 1;
+  transform: translateY(-50%) translateY(0);
+}
+
+/* RIGHT: the fixed video area; individual .anim elements stacked and toggled */
+.transport-right {
+  width: 50%;
+  position: relative;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-left: 2rem;
+}
+
+.anim {
+  position: absolute;
+  width: 100%;
+  height: 80%;
+  display: none;      /* only the active animation is shown */
+  align-items: center;
+  justify-content: center;
+  border-radius: 14px;
+  background: rgba(255,255,255,0.03);
+  box-shadow: 0 8px 40px rgba(0,0,0,0.6);
+  overflow: hidden;
+}
+
+.anim.active {
+  display: flex;
+}
+
+/* Responsiveness */
+@media (max-width: 900px) {
+  .transport-inner { flex-direction: column; padding: 2rem; }
+  .transport-left, .transport-right { width: 100%; }
+  .transport-right { margin-top: 2rem; }
+  .anim { height: 320px; }
+}
