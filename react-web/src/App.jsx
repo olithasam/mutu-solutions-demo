@@ -1,15 +1,21 @@
-import React, { useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import './index.css';
 
 function App() {
   const [activeService, setActiveService] = useState(null);
   const [activeTab, setActiveTab] = useState('demo-transport');
+  const transportRef = useRef(null);
 
   const showService = (serviceId) => {
     setActiveService(serviceId);
     setActiveTab('demo-transport');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
+
+  useEffect(() => {
+    if (activeService === 'transport' && transportRef.current) {
+      transportRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
+  }, [activeService]);
 
   const hideService = () => {
     setActiveService(null);
@@ -34,6 +40,7 @@ function App() {
           activeTab={activeTab}
           handleTabChange={handleTabChange}
           hideService={hideService}
+          transportRef={transportRef}
         />
       </div>
       
@@ -51,7 +58,7 @@ const Header = () => (
   </header>
 );
 
-const ServicesSection = ({ showService, activeService, activeTab, handleTabChange, hideService }) => (
+const ServicesSection = ({ showService, activeService, activeTab, handleTabChange, hideService, transportRef }) => (
   <div className="services-section">
     <br /><br />
     <h2><i className="fas fa-concierge-bell"></i> Our Services</h2>
@@ -117,7 +124,8 @@ const ServicesSection = ({ showService, activeService, activeTab, handleTabChang
       <TransportContent 
         activeTab={activeTab} 
         handleTabChange={handleTabChange} 
-        hideService={hideService} 
+        hideService={hideService}
+        ref={transportRef}
       />
     )}
   </div>
@@ -131,8 +139,8 @@ const ServiceCard = ({ className, icon, title, description, onClick }) => (
   </div>
 );
 
-const TransportContent = ({ activeTab, handleTabChange, hideService }) => (
-  <div id="transport-content" className="content-area">
+const TransportContent = ({ activeTab, handleTabChange, hideService }, ref) => (
+  <div id="transport-content" className="content-area" ref={ref}>
     <div className="service-header">
       <div className="service-icon">
         <i className="fas fa-truck"></i>

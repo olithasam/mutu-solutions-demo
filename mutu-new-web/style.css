@@ -1,0 +1,112 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #000;
+  font-family: "PP Noto Sans", sans-serif;
+  color: #fff;
+}
+
+/* Navbar */
+nav {
+  position: fixed;
+  top: 0;
+  width: 100vw;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2em;
+  z-index: 5;
+}
+nav a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 500;
+}
+nav .logo a {
+  font-size: 28px;
+}
+
+/* Hero Lottie */
+.lottie-container {
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
+}
+.animation {
+  width: 100%;
+  height: 100%;
+}
+
+/* About Section */
+.about {
+  background: #111;
+  color: #fff;
+  padding: 8em 2em;
+  text-align: center;
+  min-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 1s ease, transform 1s ease;
+}
+.about.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.about h2 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  color: #00d4ff;
+}
+.about p {
+  font-size: 1.2rem;
+  max-width: 700px;
+  line-height: 1.8;
+  color: #ddd;
+}
+
+#transport {
+  position: relative;
+  width: 100%;
+  min-height: 100vh; /* let GSAP pin handle the scroll length */
+  background: #000;
+  overflow: hidden;
+}
+
+.transport-container {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2em;
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+
+
+.transport-container.active {
+  opacity: 1;
+  z-index: 1; /* ensure active one shows on top */
+}
+
+
+.transport-text {
+  width: 45%;
+  padding-right: 2em;
+}
+
+.transport-animation {
+  width: 50%;
+  height: 80%;
+  position: relative;
+}
