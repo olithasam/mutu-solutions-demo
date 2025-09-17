@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", function () {
     renderer: "svg",
     loop: false,
     autoplay: false,
-    path: "./animationtrans2.json",
+    path: "./samplebg.json",
     rendererSettings: { preserveAspectRatio: "xMidYMid meet" }
   });
 
@@ -32,15 +32,10 @@ document.addEventListener("DOMContentLoaded", function () {
    });
   
 
-
-
 document.addEventListener("DOMContentLoaded", function () {
   gsap.registerPlugin(ScrollTrigger);
 
-  const transportSection = document.querySelector("#transport");
   const contents = document.querySelectorAll(".transport-content");
-
-  // JSON animation files (replace with your paths)
   const jsonFiles = [
     "./animationtrans2.json",
     "./animationtrans1.json",
@@ -56,36 +51,39 @@ document.addEventListener("DOMContentLoaded", function () {
     const anim = lottie.loadAnimation({
       container: animContainer,
       renderer: "svg",
-      loop: false,
-      autoplay: false,
+      loop: false,          // let it finish once
+      autoplay: false,      // play only when active
       path: jsonFiles[i],
       rendererSettings: { preserveAspectRatio: "xMidYMid meet" }
     });
     animations.push(anim);
   });
 
-  // ScrollTrigger logic
-  ScrollTrigger.create({
-    trigger: "",
-    start: "top top",
-    end: () => `+=${window.innerHeight * contents.length}`,
-    scrub: true,
-    pin: true,
-    onUpdate: (self) => {
-      const progress = self.progress * contents.length;
-      const index = Math.floor(progress);
-      const localProgress = progress - index;
+  // ScrollTrigger for each content
+  contents.forEach((content, i) => {
+    ScrollTrigger.create({
+      trigger: content,
+      start: "top center",
+      end: "bottom center",
+      onEnter: () => {
+        // deactivate others
+        contents.forEach((c, j) => c.classList.toggle("active", j === i));
 
-      // Activate correct content
-      contents.forEach((c, i) => c.classList.toggle("active", i === index));
+        // play this animation normally
+        if (animations[i]) {
+          animations[i].goToAndStop(0, true); // reset to start
+          animations[i].play();
+        }
+      },
+      onEnterBack: () => {
+        contents.forEach((c, j) => c.classList.toggle("active", j === i));
 
-      // Scrub animation
-      const anim = animations[index];
-      if (anim && anim.isLoaded) {
-        const frame = Math.floor(localProgress * anim.totalFrames);
-        anim.goToAndStop(frame, true);
+        if (animations[i]) {
+          animations[i].goToAndStop(0, true);
+          animations[i].play();
+        }
       }
-    }
+    });
   });
 });
 
