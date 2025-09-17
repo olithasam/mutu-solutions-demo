@@ -32,58 +32,64 @@ document.addEventListener("DOMContentLoaded", function () {
    });
   
 
-document.addEventListener("DOMContentLoaded", function () {
+ document.addEventListener("DOMContentLoaded", function () {
   gsap.registerPlugin(ScrollTrigger);
 
-  const contents = document.querySelectorAll(".transport-content");
+  const transportSection = document.querySelector("#transport");
+  const contents = Array.from(document.querySelectorAll(".transport-content"));
   const jsonFiles = [
-    "./animationtrans2.json",
     "./animationtrans1.json",
     "./animationtrans2.json",
-    "./animationtrans2.json"
+    "./animationtrans3.json",
+    "./animationtrans4.json"
   ];
 
   const animations = [];
 
-  // Load all Lottie animations
+  // Load Lottie animations
   contents.forEach((content, i) => {
     const animContainer = content.querySelector(".transport-animation");
     const anim = lottie.loadAnimation({
       container: animContainer,
       renderer: "svg",
-      loop: false,          // let it finish once
-      autoplay: false,      // play only when active
+      loop: false,
+      autoplay: false,
       path: jsonFiles[i],
       rendererSettings: { preserveAspectRatio: "xMidYMid meet" }
     });
     animations.push(anim);
   });
 
-  // ScrollTrigger for each content
-  contents.forEach((content, i) => {
-    ScrollTrigger.create({
-      trigger: content,
-      start: "top center",
-      end: "bottom center",
-      onEnter: () => {
-        // deactivate others
-        contents.forEach((c, j) => c.classList.toggle("active", j === i));
+  let currentIndex = -1;
 
-        // play this animation normally
-        if (animations[i]) {
-          animations[i].goToAndStop(0, true); // reset to start
-          animations[i].play();
-        }
-      },
-      onEnterBack: () => {
-        contents.forEach((c, j) => c.classList.toggle("active", j === i));
+  ScrollTrigger.create({
+    trigger: transportSection,
+    start: "top top",
+    end: () => `+=${window.innerHeight * contents.length}`,
+    pin: true,
+    scrub: true,
+    onUpdate: (self) => {
+      const progress = gsap.utils.clamp(0, 0.9999, self.progress);
+      const index = Math.floor(progress * contents.length);
 
-        if (animations[i]) {
-          animations[i].goToAndStop(0, true);
-          animations[i].play();
-        }
+      if (index !== currentIndex) {
+        currentIndex = index;
+        activateContent(index);
       }
-    });
+    }
   });
-});
 
+  function activateContent(i) {
+    contents.forEach((c, j) => c.classList.toggle("active", j === i));
+
+    animations.forEach((a, idx) => {
+      if (a && idx !== i) a.stop();
+    });
+
+    const anim = animations[i];
+    if (anim) {
+      anim.goToAndStop(0, true);
+      anim.play();
+    }
+  }
+});
