@@ -160,94 +160,28 @@ body {
 }
 
 
-/* About Section Styling */
+/* About Section Styling (Updated to match provided image) */
 .about-container {
-    background: white;
-    padding: 100px 0;
-    position: relative;
-    overflow: hidden;
+    background: #fff;
+    padding: 120px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .about {
-    max-width: 1200px;
+    max-width: 1100px;
     margin: 0 auto;
     padding: 0 40px;
-    position: relative;
-}
-
-.about::before {
-    content: "";
-    position: absolute;
-    top: -100px;
-    left: 0;
-    width: 100%;
-    height: 1px;
-    background: linear-gradient(90deg, 
-        transparent 0%, 
-        rgba(59, 130, 246, 0.5) 20%, 
-        rgba(59, 130, 246, 0.8) 50%, 
-        rgba(59, 130, 246, 0.5) 80%, 
-        transparent 100%);
 }
 
 .about p {
-    font-size: min(2.125rem, 5.821vw);
-    line-height: 1.8;
-    color: rgba(0, 0, 0, 0.85);
-    text-align: center;
-    margin-bottom: 40px;
-    position: relative;
-    padding: 0 20px;
-}
-
-/* Decorative elements */
-.about-container::after {
-    content: "";
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 1px;
-    background: linear-gradient(90deg, 
-        transparent 0%, 
-        rgba(59, 130, 246, 0.5) 20%, 
-        rgba(59, 130, 246, 0.8) 50%, 
-        rgba(59, 130, 246, 0.5) 80%, 
-        transparent 100%);
-}
-
-/* Adding some logistics-themed decorative elements */
-.about::after {
-    content: "⦿";
-    position: absolute;
-    bottom: -60px;
-    left: 50%;
-    transform: translateX(-50%);
-    color: rgba(59, 130, 246, 0.3);
-    font-size: 1.5rem;
-}
-
-/* Responsive design */
-@media (max-width: 768px) {
-    .about {
-        padding: 0 20px;
-    }
-    
-    .about p {
-        font-size: 1.1rem;
-        padding: 0 10px;
-    }
-}
-
-@media (max-width: 480px) {
-    .about-container {
-        padding: 80px 0;
-    }
-    
-    .about p {
-        font-size: 1rem;
-        line-height: 1.6;
-    }
+    font-size: clamp(2rem, 4vw, 3.5rem); /* responsive large font */
+    font-weight: 500;
+    line-height: 1.2;
+    color: #082032; /* dark text */
+    text-align: left; /* left aligned instead of center */
+    margin: 0;
 }
 
 
