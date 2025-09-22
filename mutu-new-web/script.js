@@ -1,7 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
   gsap.registerPlugin(ScrollTrigger);
 
-  // -------------------- HERO LOTTIE --------------------
   const heroContainer = document.querySelector(".animation");
   const heroPlayhead = { frame: 0 };
   const heroAnim = lottie.loadAnimation({
@@ -25,7 +24,6 @@ document.addEventListener("DOMContentLoaded", function () {
         scrub: true,
         pin: true,
         anticipatePin: 1
-        // markers: true // uncomment to debug
       }
     });
   });
@@ -40,8 +38,8 @@ document.addEventListener("DOMContentLoaded", function () {
   const jsonFiles = [
     "./animationtrans1.json",
     "./animationtrans2.json",
-    "./animationtrans3.json",
-    "./animationtrans4.json"
+    "./animationtrans1.json",
+    "./animationtrans2.json"
   ];
 
   const animations = [];
@@ -92,4 +90,48 @@ document.addEventListener("DOMContentLoaded", function () {
       anim.play();
     }
   }
+});
+
+
+document.addEventListener("DOMContentLoaded", function () {
+  gsap.registerPlugin(ScrollTrigger);
+
+  const slides = document.querySelectorAll(".video-slide");
+  const numSlides = slides.length;
+
+  let currentIndex = -1;
+
+  ScrollTrigger.create({
+    trigger: ".video-slider",
+    start: "top top",
+    end: "+=" + window.innerHeight * numSlides,
+    pin: true,
+    scrub: true,
+    onUpdate: (self) => {
+      const progress = gsap.utils.clamp(0, 0.9999, self.progress);
+      const index = Math.floor(progress * numSlides);
+
+      if (index !== currentIndex) {
+        currentIndex = index;
+        activateSlide(index);
+      }
+    }
+  });
+
+  function activateSlide(i) {
+    slides.forEach((slide, j) => {
+      slide.classList.toggle("active", j === i);
+
+      // Reset videos
+      const vid = slide.querySelector("video");
+      if (vid) {
+        vid.currentTime = 0;
+        if (j === i) vid.play();
+        else vid.pause();
+      }
+    });
+  }
+
+  // Initialize first slide
+  activateSlide(0);
 });
