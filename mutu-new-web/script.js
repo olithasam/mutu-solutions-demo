@@ -30,67 +30,67 @@ document.addEventListener("DOMContentLoaded", function () {
    });
   
 
- document.addEventListener("DOMContentLoaded", function () {
-  gsap.registerPlugin(ScrollTrigger);
+//  document.addEventListener("DOMContentLoaded", function () {
+//   gsap.registerPlugin(ScrollTrigger);
 
-  const transportSection = document.querySelector("#transport");
-  const contents = Array.from(document.querySelectorAll(".transport-content"));
-  const jsonFiles = [
-    "./animationtrans1.json",
-    "./animationtrans2.json",
-    "./animationtrans1.json",
-    "./animationtrans2.json"
-  ];
+//   const transportSection = document.querySelector("#transport");
+//   const contents = Array.from(document.querySelectorAll(".transport-content"));
+//   const jsonFiles = [
+//     "./animationtrans1.json",
+//     "./animationtrans2.json",
+//     "./animationtrans1.json",
+//     "./animationtrans2.json"
+//   ];
 
-  const animations = [];
+//   const animations = [];
 
-  // Load Lottie animations
-  contents.forEach((content, i) => {
-    const animContainer = content.querySelector(".transport-animation");
-    const anim = lottie.loadAnimation({
-      container: animContainer,
-      renderer: "svg",
-      loop: false,
-      autoplay: false,
-      path: jsonFiles[i],
-      rendererSettings: { preserveAspectRatio: "xMidYMid meet" }
-    });
-    animations.push(anim);
-  });
+//   // Load Lottie animations
+//   contents.forEach((content, i) => {
+//     const animContainer = content.querySelector(".transport-animation");
+//     const anim = lottie.loadAnimation({
+//       container: animContainer,
+//       renderer: "svg",
+//       loop: false,
+//       autoplay: false,
+//       path: jsonFiles[i],
+//       rendererSettings: { preserveAspectRatio: "xMidYMid meet" }
+//     });
+//     animations.push(anim);
+//   });
 
-  let currentIndex = -1;
+//   let currentIndex = -1;
 
-  ScrollTrigger.create({
-    trigger: transportSection,
-    start: "top top",
-    end: () => `+=${window.innerHeight * contents.length}`,
-    pin: true,
-    scrub: true,
-    onUpdate: (self) => {
-      const progress = gsap.utils.clamp(0, 0.9999, self.progress);
-      const index = Math.floor(progress * contents.length);
+//   ScrollTrigger.create({
+//     trigger: transportSection,
+//     start: "top top",
+//     end: () => `+=${window.innerHeight * contents.length}`,
+//     pin: true,
+//     scrub: true,
+//     onUpdate: (self) => {
+//       const progress = gsap.utils.clamp(0, 0.9999, self.progress);
+//       const index = Math.floor(progress * contents.length);
 
-      if (index !== currentIndex) {
-        currentIndex = index;
-        activateContent(index);
-      }
-    }
-  });
+//       if (index !== currentIndex) {
+//         currentIndex = index;
+//         activateContent(index);
+//       }
+//     }
+//   });
 
-  function activateContent(i) {
-    contents.forEach((c, j) => c.classList.toggle("active", j === i));
+//   function activateContent(i) {
+//     contents.forEach((c, j) => c.classList.toggle("active", j === i));
 
-    animations.forEach((a, idx) => {
-      if (a && idx !== i) a.stop();
-    });
+//     animations.forEach((a, idx) => {
+//       if (a && idx !== i) a.stop();
+//     });
 
-    const anim = animations[i];
-    if (anim) {
-      anim.goToAndStop(0, true);
-      anim.play();
-    }
-  }
-});
+//     const anim = animations[i];
+//     if (anim) {
+//       anim.goToAndStop(0, true);
+//       anim.play();
+//     }
+//   }
+// });
 
 
 document.addEventListener("DOMContentLoaded", function () {
