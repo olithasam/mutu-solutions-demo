@@ -1,4 +1,4 @@
-/* CSS Variables for Theme Support */
+
 :root {
     /* Light Mode Colors */
     --bg-primary: #ffffff;
@@ -60,17 +60,34 @@ body {
     margin: 0 auto;
     padding: 0 20px;
 }
-/* Hero Lottie */
 .lottie-container {
   width: 100%;
   height: 825px;
   overflow: hidden;
   position: relative;
+  background: #fff; /* fallback background */
 }
-.animation {
+
+.hero-text {
+  position: absolute;
+  bottom: 100px; /* adjust to sit above the curve */
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  color: #111; /* adjust contrast */
+  z-index: 2;
+}
+
+.curve {
+  position: absolute;
+  bottom: 0;
+  left: 0;
   width: 100%;
-  height: 100%;
+  height: 120px; /* divider height */
+  z-index: 1;
+  fill: #fff; /* make it blend into next section */
 }
+
 
 /* Navigation Styles */
 .navbar {
@@ -192,7 +209,7 @@ body {
 
 
 .transport-content {
-  position: absolute;
+  position: fixed;
   inset: 0;
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -993,3 +1010,23 @@ body {
         font-size: 2.5rem;
     }
 }
+
+/* .semicircle {
+  position: relative;
+  background: #000000;
+  height: 5vh;
+}
+
+.semicircle::before {
+  position: absolute;
+  content: '';
+  left: 50%;
+  z-index: 10;
+  width: 593px;
+  height: 76px;
+  border-radius: 50%;
+  background: inherit;
+  transform: translateX(-50%) translateY(50%);
+  bottom: 0px;
+} */
+
