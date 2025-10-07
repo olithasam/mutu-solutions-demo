@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>GSAP Canvas Sequence + Sliding Text</title>
+  <title>GSAP Canvas Sequence + Sequential Text</title>
 
   <!-- GSAP & ScrollTrigger -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
@@ -14,7 +14,6 @@
       height: 100%;
       margin: 0;
       background: #000;
-      /* overflow-x: hidden; */
       font-family: sans-serif;
       color: #fff;
     }
@@ -41,20 +40,27 @@
       background: #000;
     }
 
-    /* Sliding text overlay */
+    /* Text overlay container */
     .sequence-text {
       position: fixed;
-      top: 90%;
-      left: 100%; /* start offscreen right */
-      display: flex;
-      gap: 3vw;
-      white-space: nowrap;
-      font-size: 2vw;
-      font-weight: 700;
-      color: #f3fffd;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
       z-index: 20;
       pointer-events: none;
-      transform: translateY(-50%);
+    }
+
+    .sequence-text h1 {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      white-space: nowrap;
+      font-size: 4vw;
+      font-weight: 700;
+      color: #f3fffd;
+      margin: 0;
+      opacity: 0;
     }
 
     /* Scrollable area */
@@ -71,9 +77,9 @@
   <canvas id="sequence"></canvas>
 
   <div class="sequence-text">
-    <h1>Experience Motion</h1>
-    <h1>Scroll Animation</h1>
-    <h1>Cinematic Motion</h1>
+    <h1 id="text1">Experience Motion</h1>
+    <h1 id="text2">Scroll Animation</h1>
+    <h1 id="text3">Cinematic Motion</h1>
   </div>
 
   <div id="scroll-space"></div>
@@ -94,7 +100,9 @@
     const loader = document.querySelector('.loader');
     const progressText = document.getElementById('progress-text');
     const scrollSpace = document.getElementById('scroll-space');
-    const textOverlay = document.querySelector('.sequence-text');
+    const text1 = document.getElementById('text1');
+    const text2 = document.getElementById('text2');
+    const text3 = document.getElementById('text3');
 
     // Canvas sizing
     function sizeCanvas() {
@@ -149,7 +157,7 @@
       });
     }
 
-    // Canvas + sliding text animation
+    // Canvas + sequential text animation
     function startSequenceScroll() {
       const frameObj = { index: 1 };
       const scrollLength = scrollSpace.offsetHeight;
@@ -170,10 +178,27 @@
             const idx = Math.min(Math.max(Math.round(frameObj.index), 1), frameCount);
             drawImageScaled(images[idx]);
 
-            // Move text horizontally in sync
-            const progress = self.progress; // 0 → 1
-            textOverlay.style.transform = `translateY(-50%) translateX(${20 - 200*progress}vw)`; 
-            // Starts at 100vw right, ends at -100vw left
+            // Show text based on scroll progress
+            const progress = self.progress;
+            
+            // Text 1: visible from 0-0.33
+            if (progress < 0.33) {
+              text1.style.opacity = 1;
+              text2.style.opacity = 0;
+              text3.style.opacity = 0;
+            }
+            // Text 2: visible from 0.33-0.66
+            else if (progress < 0.66) {
+              text1.style.opacity = 0;
+              text2.style.opacity = 1;
+              text3.style.opacity = 0;
+            }
+            // Text 3: visible from 0.66-1.0
+            else {
+              text1.style.opacity = 0;
+              text2.style.opacity = 0;
+              text3.style.opacity = 1;
+            }
           }
         }
       });
