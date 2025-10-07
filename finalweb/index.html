@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>GSAP Canvas Sequence + Sliding Text</title>
+
+  <!-- GSAP & ScrollTrigger -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      background: #000;
+      /* overflow-x: hidden; */
+      font-family: sans-serif;
+      color: #fff;
+    }
+
+    /* Loader */
+    .loader {
+      position: fixed;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 100;
+      background: #000;
+    }
+
+    /* Canvas */
+    canvas#sequence {
+      position: fixed;
+      inset: 0;
+      width: 100vw;
+      height: 100vh;
+      display: block;
+      z-index: 10;
+      background: #000;
+    }
+
+    /* Sliding text overlay */
+    .sequence-text {
+      position: fixed;
+      top: 90%;
+      left: 100%; /* start offscreen right */
+      display: flex;
+      gap: 3vw;
+      white-space: nowrap;
+      font-size: 2vw;
+      font-weight: 700;
+      color: #f3fffd;
+      z-index: 20;
+      pointer-events: none;
+      transform: translateY(-50%);
+    }
+
+    /* Scrollable area */
+    #scroll-space {
+      width: 100%;
+      background: transparent;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="loader"><h2 id="progress-text">Loading 0%</h2></div>
+
+  <canvas id="sequence"></canvas>
+
+  <div class="sequence-text">
+    <h1>Experience Motion</h1>
+    <h1>Scroll Animation</h1>
+    <h1>Cinematic Motion</h1>
+  </div>
+
+  <div id="scroll-space"></div>
+
+  <script>
+  (function () {
+    gsap.registerPlugin(ScrollTrigger);
+
+    // CONFIG
+    const frameCount = 150;
+    const framePath = i => `images/frame_${String(i).padStart(4,'0')}.jpg`;
+    const images = [];
+    let loadedCount = 0;
+
+    // DOM
+    const canvas = document.getElementById('sequence');
+    const ctx = canvas.getContext('2d');
+    const loader = document.querySelector('.loader');
+    const progressText = document.getElementById('progress-text');
+    const scrollSpace = document.getElementById('scroll-space');
+    const textOverlay = document.querySelector('.sequence-text');
+
+    // Canvas sizing
+    function sizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    sizeCanvas();
+
+    function drawImageScaled(img) {
+      if (!img) return;
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      const scale = Math.max(canvas.width / img.width, canvas.height / img.height);
+      const w = img.width * scale;
+      const h = img.height * scale;
+      const x = (canvas.width - w) / 2;
+      const y = (canvas.height - h) / 2;
+      ctx.drawImage(img, x, y, w, h);
+    }
+
+    // Preload frames
+    async function preloadAll() {
+      const promises = [];
+      for (let i = 1; i <= frameCount; i++) {
+        const url = framePath(i);
+        const p = fetch(url)
+          .then(r => r.blob())
+          .then(blob => createImageBitmap(blob))
+          .then(bitmap => {
+            images[i] = bitmap;
+            loadedCount++;
+            progressText.textContent = `Loading ${Math.round(loadedCount/frameCount*100)}%`;
+          });
+        promises.push(p);
+      }
+      await Promise.all(promises);
+      onAllLoaded();
+    }
+
+    function onAllLoaded() {
+      const multiplier = 5;
+      scrollSpace.style.height = (window.innerHeight * multiplier) + 'px';
+
+      gsap.to(loader, {
+        opacity: 0,
+        duration: 0.6,
+        ease: 'power2.out',
+        onComplete() {
+          loader.style.display = 'none';
+          drawImageScaled(images[1]);
+          startSequenceScroll();
+        }
+      });
+    }
+
+    // Canvas + sliding text animation
+    function startSequenceScroll() {
+      const frameObj = { index: 1 };
+      const scrollLength = scrollSpace.offsetHeight;
+
+      gsap.to(frameObj, {
+        index: frameCount,
+        ease: 'none',
+        snap: { snap: v => Math.round(v) },
+        scrollTrigger: {
+          trigger: "#scroll-space",
+          start: "top top",
+          end: "+=" + scrollLength,
+          scrub: 0.6,
+          pin: canvas,
+          anticipatePin: 1,
+          onUpdate: self => {
+            // Draw canvas frame
+            const idx = Math.min(Math.max(Math.round(frameObj.index), 1), frameCount);
+            drawImageScaled(images[idx]);
+
+            // Move text horizontally in sync
+            const progress = self.progress; // 0 → 1
+            textOverlay.style.transform = `translateY(-50%) translateX(${20 - 200*progress}vw)`; 
+            // Starts at 100vw right, ends at -100vw left
+          }
+        }
+      });
+    }
+
+    // Responsive resize
+    let resizeTimeout;
+    window.addEventListener('resize', () => {
+      clearTimeout(resizeTimeout);
+      resizeTimeout = setTimeout(() => {
+        sizeCanvas();
+        scrollSpace.style.height = (window.innerHeight * 5) + 'px';
+        ScrollTrigger.refresh();
+        drawImageScaled(images[1]);
+      }, 120);
+    });
+
+    preloadAll();
+  })();
+  </script>
+</body>
+</html>
