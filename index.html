@@ -37,7 +37,7 @@
   /* Navbar */
     header {
       position: fixed;
-      top: 50px; 
+      top: 15px; 
       left: 50%;
       transform: translateX(-50%); 
       width: auto; 
@@ -46,8 +46,8 @@
       backdrop-filter: blur(10px); 
       -webkit-backdrop-filter: blur(10px);
       border-radius: 50px; /* Rounded corners for floating effect */
-      padding: 40px 60px;
-      border: 1px solid rgba(255, 255, 255, 0.1); /* Subtle border */
+      padding: 0px 30px;
+      border: 5px solid rgba(255, 255, 255, 0.1); /* Subtle border */
       box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3); /* Floating shadow */
     }
 
@@ -55,12 +55,24 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 10px 0;
+      padding: 1px 0;
+    }
+    /* Logo Styles */
+    .logo img {
+      width: auto;
+      height: 40px;
+      object-fit: contain;
+      transition: transform 0.3s ease;
+      margin-right: 100px;
+    }
+
+    .logo img:hover {
+      transform: scale(1.05);
     }
 
     .navbar nav {
       display: flex;
-      gap: 35px;
+      gap: 1px;
       list-style: none;
       margin: 0;
       padding: 0;
@@ -72,7 +84,7 @@
 
     .navbar nav a {
       text-decoration: none;
-      font-size: 1.1vw;
+      font-size: 1.0vw;
       color: #f3fffd;
       transition: all 0.3s ease;
       padding: 8px 16px;
@@ -80,8 +92,8 @@
     }
 
     .navbar nav a:hover {
-      color: #431bd4;
-      background: rgba(255, 255, 255, 0.1);
+      color: #000000;
+      background: rgba(255, 254, 254, 0.1);
       transform: translateY(-2px);
     }
 
@@ -143,9 +155,13 @@
 
   <div class="loader"><h2 id="progress-text">Loading 0%</h2></div>
 
-  <header>
+ <header>
   <div class="navbar">
-    <h1>Mutu Solutions</h1>
+    <div class="logo">
+      <a href="index.html">
+        <img src="./assets/logomutu.png" alt="Mutu Solutions Logo">
+      </a>
+    </div>
     <nav>
       <li><a href="#home">Home</a></li>
       <li><a href="#services">Services</a></li>
