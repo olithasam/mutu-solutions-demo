@@ -43,7 +43,7 @@
     /* Text overlay container */
     .sequence-text {
       position: fixed;
-      top: 50%;
+      top: 85%;
       left: 50%;
       transform: translate(-50%, -50%);
       z-index: 20;
@@ -61,6 +61,12 @@
       color: #f3fffd;
       margin: 0;
       opacity: 0;
+      display: flex;
+    }
+
+    .sequence-text h1 span {
+      display: inline-block;
+      opacity: 0;
     }
 
     /* Scrollable area */
@@ -77,9 +83,9 @@
   <canvas id="sequence"></canvas>
 
   <div class="sequence-text">
-    <h1 id="text1">Experience Motion</h1>
-    <h1 id="text2">Scroll Animation</h1>
-    <h1 id="text3">Cinematic Motion</h1>
+    <h1 id="text1"></h1>
+    <h1 id="text2"></h1>
+    <h1 id="text3"></h1>
   </div>
 
   <div id="scroll-space"></div>
@@ -89,7 +95,7 @@
     gsap.registerPlugin(ScrollTrigger);
 
     // CONFIG
-    const frameCount = 150;
+    const frameCount = 125;
     const framePath = i => `images/frame_${String(i).padStart(4,'0')}.jpg`;
     const images = [];
     let loadedCount = 0;
@@ -103,6 +109,25 @@
     const text1 = document.getElementById('text1');
     const text2 = document.getElementById('text2');
     const text3 = document.getElementById('text3');
+
+    // Split text into letters
+    const texts = [
+      { element: text1, content: 'Experience Motion' },
+      { element: text2, content: 'Scroll Animation' },
+      { element: text3, content: 'Cinematic Motion' }
+    ];
+
+    texts.forEach(({ element, content }) => {
+      content.split('').forEach(char => {
+        const span = document.createElement('span');
+        span.textContent = char === ' ' ? '\u00A0' : char;
+        element.appendChild(span);
+      });
+    });
+
+    const letters1 = text1.querySelectorAll('span');
+    const letters2 = text2.querySelectorAll('span');
+    const letters3 = text3.querySelectorAll('span');
 
     // Canvas sizing
     function sizeCanvas() {
@@ -142,7 +167,7 @@
     }
 
     function onAllLoaded() {
-      const multiplier = 5;
+      const multiplier = 8;
       scrollSpace.style.height = (window.innerHeight * multiplier) + 'px';
 
       gsap.to(loader, {
@@ -186,18 +211,46 @@
               text1.style.opacity = 1;
               text2.style.opacity = 0;
               text3.style.opacity = 0;
+              
+              // Reveal letters progressively
+              const localProgress = progress / 0.33; // 0 to 1 within this section
+              letters1.forEach((letter, i) => {
+                const letterProgress = i / letters1.length;
+                letter.style.opacity = localProgress > letterProgress ? 1 : 0;
+              });
             }
             // Text 2: visible from 0.33-0.66
             else if (progress < 0.66) {
               text1.style.opacity = 0;
               text2.style.opacity = 1;
               text3.style.opacity = 0;
+              
+              // Hide all letters from text1
+              letters1.forEach(letter => letter.style.opacity = 0);
+              
+              // Reveal letters progressively
+              const localProgress = (progress - 0.33) / 0.33;
+              letters2.forEach((letter, i) => {
+                const letterProgress = i / letters2.length;
+                letter.style.opacity = localProgress > letterProgress ? 1 : 0;
+              });
             }
             // Text 3: visible from 0.66-1.0
             else {
               text1.style.opacity = 0;
               text2.style.opacity = 0;
               text3.style.opacity = 1;
+              
+              // Hide all letters from text1 and text2
+              letters1.forEach(letter => letter.style.opacity = 0);
+              letters2.forEach(letter => letter.style.opacity = 0);
+              
+              // Reveal letters progressively
+              const localProgress = (progress - 0.66) / 0.34;
+              letters3.forEach((letter, i) => {
+                const letterProgress = i / letters3.length;
+                letter.style.opacity = localProgress > letterProgress ? 1 : 0;
+              });
             }
           }
         }
