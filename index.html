@@ -28,6 +28,69 @@
       z-index: 100;
       background: #000;
     }
+    .loader h2 {
+      font-size: 2vw;
+      font-weight: 400;
+      color: #f3fffd;
+      margin: 0;
+    }
+  /* Navbar */
+    header {
+      position: fixed;
+      top: 50px; 
+      left: 50%;
+      transform: translateX(-50%); 
+      width: auto; 
+      z-index: 50;
+      background: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(10px); 
+      -webkit-backdrop-filter: blur(10px);
+      border-radius: 50px; /* Rounded corners for floating effect */
+      padding: 40px 60px;
+      border: 1px solid rgba(255, 255, 255, 0.1); /* Subtle border */
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3); /* Floating shadow */
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 0;
+    }
+
+    .navbar nav {
+      display: flex;
+      gap: 35px;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .navbar nav li {
+      margin: 0;
+    }
+
+    .navbar nav a {
+      text-decoration: none;
+      font-size: 1.1vw;
+      color: #f3fffd;
+      transition: all 0.3s ease;
+      padding: 8px 16px;
+      border-radius: 25px;
+    }
+
+    .navbar nav a:hover {
+      color: #431bd4;
+      background: rgba(255, 255, 255, 0.1);
+      transform: translateY(-2px);
+    }
+
+    .navbar h1 {
+      color: white;
+      margin: 0;
+      font-size: 1.5vw;
+      padding-right: 30px;
+    }
 
     /* Canvas */
     canvas#sequence {
@@ -79,6 +142,18 @@
 <body>
 
   <div class="loader"><h2 id="progress-text">Loading 0%</h2></div>
+
+  <header>
+  <div class="navbar">
+    <h1>Mutu Solutions</h1>
+    <nav>
+      <li><a href="#home">Home</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </nav>
+  </div>
+</header>
 
   <canvas id="sequence"></canvas>
 
