@@ -229,8 +229,8 @@
     /* About Section Styling */
     .about-container {
       position: relative;
-      min-height: 10vh;
-      background: #e0e7ff;
+      min-height: 90vh;
+      background: #ffffff;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -245,9 +245,11 @@
       z-index: 2;
       opacity: 0;
       transform: translateY(50px);
+      
     }
     .about p {
-      font-size: clamp(16px, 2vw, 20px);
+      font-size: max(1.000rem, min(3.688vw, 100px));
+      letter-spacing: min(-.141vw, -3.6px);
       line-height: 1.8;
       color: #000000;
       margin: 0;
