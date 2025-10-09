@@ -11,7 +11,7 @@
 
   <style>
     :root { 
-      --background-color: #05071e; 
+      --background-color: #f7f7f7; 
       --default-color: #e8e7f7; 
       --nav-color: #f3fffd;
       --nav-background-color: rgba(0, 0, 0, 0.7); 
@@ -230,8 +230,8 @@
     /* About Section Styling */
     .about-container {
       position: relative;
-      min-height: 100vh;
-      background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #0a0a0a 100%);
+      min-height: 10vh;
+      background: #e0e7ff;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -239,8 +239,26 @@
       overflow: hidden;
       z-index: 4;
     }
+     .about {
+      position: relative;
+      max-width: 1000px;
+      width: 100%;
+      z-index: 2;
+      opacity: 0;
+      transform: translateY(50px);
+    }
+    .about p {
+      font-size: clamp(16px, 2vw, 20px);
+      line-height: 1.8;
+      color: #000000;
+      margin: 0;
+      position: relative;
+      z-index: 1;
+      font-weight: 350;
+      text-align: center;
+    }
 
-    .about-container::before {
+    /* .about-container::before {
       content: '';
       position: absolute;
       top: 0;
@@ -249,18 +267,11 @@
       height: 200px;
       background: linear-gradient(to bottom, #000 0%, transparent 100%);
       z-index: 1;
-    }
+    } */
 
-    .about {
-      position: relative;
-      max-width: 1200px;
-      width: 100%;
-      z-index: 2;
-      opacity: 0;
-      transform: translateY(50px);
-    }
+   
 
-    .about-content {
+    /* .about-content {
       background: rgba(255, 255, 255, 0.03);
       backdrop-filter: blur(20px);
       border-radius: 30px;
@@ -269,9 +280,9 @@
       box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
       position: relative;
       overflow: hidden;
-    }
+    } */
 
-    .about-content::before {
+    /* .about-content::before {
       content: '';
       position: absolute;
       top: -50%;
@@ -285,9 +296,9 @@
     @keyframes pulse {
       0%, 100% { transform: translate(0, 0) scale(1); }
       50% { transform: translate(-10%, -10%) scale(1.1); }
-    }
+    } */
 
-    .about-label {
+    /* .about-label {
       font-size: 14px;
       font-weight: 600;
       letter-spacing: 3px;
@@ -320,19 +331,11 @@
       line-height: 1.2;
       position: relative;
       z-index: 2;
-    }
+    } */
 
-    .about p {
-      font-size: clamp(16px, 2vw, 20px);
-      line-height: 1.8;
-      color: #e0e7ff;
-      margin: 0;
-      position: relative;
-      z-index: 1;
-      font-weight: 300;
-    }
+    
 
-    .about-stats {
+    /* .about-stats {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
       gap: 30px;
@@ -369,7 +372,7 @@
       color: #c7d2fe;
       text-transform: uppercase;
       letter-spacing: 1px;
-    }
+    } */
 
     /* Responsive */
     @media (max-width: 768px) {
@@ -377,14 +380,14 @@
         padding: 50px 30px;
       }
 
-      .sequence-text h1 {
+      /* .sequence-text h1 {
         font-size: 6vw;
       }
 
       .about-stats {
         grid-template-columns: 1fr;
         gap: 20px;
-      }
+      } */
     }
   </style>
 </head>
@@ -428,8 +431,8 @@
   <section id="about" class="about-container" style="margin-top: -5500px;">
     <div class="about">
       <div class="about-content">
-        <span class="about-label">About Us</span>
-        <h2>Transforming Logistics Through Innovation</h2>
+        <!-- <span class="about-label">About Us</span>
+        <h2>Transforming Logistics Through Innovation</h2> -->
         <p>MUTU Solutions provides cutting-edge logistics services that make your supply chain visible, efficient, and reliable. Our integrated approach combines ground transportation, warehousing, shipping, and specialized services to deliver seamless end-to-end solutions.</p>
         
         <!-- <div class="about-stats">
@@ -461,207 +464,206 @@
       navMenu.classList.toggle('open');
     });
 
-    (function () {
-      gsap.registerPlugin(ScrollTrigger);
+   (function () {
+  gsap.registerPlugin(ScrollTrigger);
 
-      const frameCount = 125;
-      const framePath = i => `images/frame_${String(i).padStart(4,'0')}.jpg`;
-      const images = [];
-      let loadedCount = 0;
+  const frameCount = 125;
+  const framePath = i => `images/frame_${String(i).padStart(4,'0')}.jpg`;
+  const images = [];
+  let loadedCount = 0;
 
-      const canvas = document.getElementById('sequence');
-      const ctx = canvas.getContext('2d');
-      const loader = document.querySelector('.loader');
-      const progressText = document.getElementById('progress-text');
-      const scrollSpace = document.getElementById('scroll-space');
-      const text1 = document.getElementById('text1');
-      const text2 = document.getElementById('text2');
-      const text3 = document.getElementById('text3');
+  const canvas = document.getElementById('sequence');
+  const ctx = canvas.getContext('2d');
+  const loader = document.querySelector('.loader');
+  const progressText = document.getElementById('progress-text');
+  const scrollSpace = document.getElementById('scroll-space');
+  const text1 = document.getElementById('text1');
+  const text2 = document.getElementById('text2');
+  const text3 = document.getElementById('text3');
 
-      const texts = [
-        { element: text1, content: 'Digital Transformation' },
-        { element: text2, content: 'For Logistics Leaders' },
-        { element: text3, content: 'Built on ServiceNow' }
-      ];
+  const texts = [
+    { element: text1, content: 'Digital Transformation' },
+    { element: text2, content: 'For Logistics Leaders' },
+    { element: text3, content: 'Built on ServiceNow' }
+  ];
 
-      texts.forEach(({ element, content }) => {
-        content.split('').forEach(char => {
-          const span = document.createElement('span');
-          span.textContent = char === ' ' ? '\u00A0' : char;
-          element.appendChild(span);
+  texts.forEach(({ element, content }) => {
+    element.innerHTML = ''; // ensure empty
+    content.split('').forEach(char => {
+      const span = document.createElement('span');
+      span.textContent = char === ' ' ? '\u00A0' : char;
+      element.appendChild(span);
+    });
+  });
+
+  const letters1 = text1.querySelectorAll('span');
+  const letters2 = text2.querySelectorAll('span');
+  const letters3 = text3.querySelectorAll('span');
+
+  function sizeCanvas() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+  sizeCanvas();
+
+  function drawImageScaled(img) {
+    if (!img) return;
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    const scale = Math.max(canvas.width / img.width, canvas.height / img.height);
+    const w = img.width * scale;
+    const h = img.height * scale;
+    const x = (canvas.width - w) / 2;
+    const y = (canvas.height - h) / 2;
+    ctx.drawImage(img, x, y, w, h);
+  }
+
+  // dynamic lengths (recomputed on resize)
+  let scrollLength = Math.max(frameCount * 60, window.innerHeight * 6); // main animation scroll in px
+  let holdLength = Math.round(window.innerHeight * 1.0);                // extra hold (1 viewport)
+
+  async function preloadAll() {
+    const promises = [];
+    for (let i = 1; i <= frameCount; i++) {
+      const url = framePath(i);
+      const p = fetch(url)
+        .then(r => r.blob())
+        .then(blob => createImageBitmap(blob))
+        .then(bitmap => {
+          images[i] = bitmap;
+          loadedCount++;
+          progressText.textContent = `Loading ${Math.round(loadedCount / frameCount * 100)}%`;
+        })
+        .catch(err => {
+          console.error('frame load error', url, err);
         });
-      });
+      promises.push(p);
+    }
+    await Promise.all(promises);
+    onAllLoaded();
+  }
 
-      const letters1 = text1.querySelectorAll('span');
-      const letters2 = text2.querySelectorAll('span');
-      const letters3 = text3.querySelectorAll('span');
+  function onAllLoaded() {
+    // ensure the scroll-space is tall enough for the animation + hold + normal page scroll
+    scrollSpace.style.height = (scrollLength + holdLength + window.innerHeight) + 'px';
 
-      function sizeCanvas() {
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
+    gsap.to(loader, {
+      opacity: 0,
+      duration: 0.6,
+      ease: 'power2.out',
+      onComplete() {
+        loader.style.display = 'none';
+        drawImageScaled(images[1]);
+        startSequenceScroll();
+        animateAboutSection();
       }
-      sizeCanvas();
+    });
+  }
 
-      function drawImageScaled(img) {
-        if (!img) return;
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        const scale = Math.max(canvas.width / img.width, canvas.height / img.height);
-        const w = img.width * scale;
-        const h = img.height * scale;
-        const x = (canvas.width - w) / 2;
-        const y = (canvas.height - h) / 2;
-        ctx.drawImage(img, x, y, w, h);
-      }
+function startSequenceScroll() {
+  const frameObj = { index: 1 };
 
-      async function preloadAll() {
-        const promises = [];
-        for (let i = 1; i <= frameCount; i++) {
-          const url = framePath(i);
-          const p = fetch(url)
-            .then(r => r.blob())
-            .then(blob => createImageBitmap(blob))
-            .then(bitmap => {
-              images[i] = bitmap;
-              loadedCount++;
-              progressText.textContent = `Loading ${Math.round(loadedCount/frameCount*100)}%`;
-            });
-          promises.push(p);
-        }
-        await Promise.all(promises);
-        onAllLoaded();
-      }
+  // Calculate total scroll distance for all frames
+  const scrollLength = Math.max(frameCount * 60, window.innerHeight * 6);
 
-      function onAllLoaded() {
-        const multiplier = 5;
-        scrollSpace.style.height = (window.innerHeight * multiplier) + 'px';
+  // Match #scroll-space height exactly to the animation scroll distance
+  scrollSpace.style.height = scrollLength + 'px';
 
-        gsap.to(loader, {
-          opacity: 0,
-          duration: 0.6,
-          ease: 'power2.out',
-          onComplete() {
-            loader.style.display = 'none';
-            drawImageScaled(images[1]);
-            startSequenceScroll();
-            animateAboutSection();
-          }
-        });
-      }
+  // Create main ScrollTrigger (no second hold trigger)
+  gsap.to(frameObj, {
+    index: frameCount,
+    ease: 'none',
+    snap: { snap: v => Math.round(v) },
+    scrollTrigger: {
+      trigger: "#scroll-space",
+      start: "top top",
+      end: "+=" + scrollLength,
+      scrub: 0.6,
+      pin: canvas,
+      anticipatePin: 1,
+      onUpdate: self => {
+        const idx = Math.min(Math.max(Math.round(frameObj.index), 1), frameCount);
+        drawImageScaled(images[idx]);
 
-      function startSequenceScroll() {
-        const frameObj = { index: 1 };
-        // const scrollLength = scrollSpace.offsetHeight;
-        // console.log('Scroll Length:', scrollLength);
-        const scrollLength = 8000;
-
-
-        gsap.to(frameObj, {
-          index: frameCount,
-          ease: 'none',
-          snap: { snap: v => Math.round(v) },
-          scrollTrigger: {
-            trigger: "#scroll-space",
-            start: "top top",
-            end: "+=" + scrollLength,
-            scrub: 0.6,
-            pin: canvas,
-            anticipatePin: 1,
-            onUpdate: self => {
-              const idx = Math.min(Math.max(Math.round(frameObj.index), 1), frameCount);
-              drawImageScaled(images[idx]);
-
-              const progress = self.progress;
-              
-              if (progress < 0.33) {
-                text1.style.opacity = 1;
-                text2.style.opacity = 0;
-                text3.style.opacity = 0;
-                
-                const localProgress = progress / 0.33;
-                letters1.forEach((letter, i) => {
-                  const letterProgress = i / letters1.length;
-                  letter.style.opacity = localProgress > letterProgress ? 1 : 0;
-                });
-              }
-              else if (progress < 0.66) {
-                text1.style.opacity = 0;
-                text2.style.opacity = 1;
-                text3.style.opacity = 0;
-                
-                letters1.forEach(letter => letter.style.opacity = 0);
-                
-                const localProgress = (progress - 0.33) / 0.33;
-                letters2.forEach((letter, i) => {
-                  const letterProgress = i / letters2.length;
-                  letter.style.opacity = localProgress > letterProgress ? 1 : 0;
-                });
-              }
-              else {
-                text1.style.opacity = 0;
-                text2.style.opacity = 0;
-                text3.style.opacity = 1;
-                
-                letters1.forEach(letter => letter.style.opacity = 0);
-                letters2.forEach(letter => letter.style.opacity = 0);
-                
-                const localProgress = (progress - 0.66) / 0.34;
-                letters3.forEach((letter, i) => {
-                  const letterProgress = i / letters3.length;
-                  letter.style.opacity = localProgress > letterProgress ? 1 : 0;
-                });
-              }
-            }
-          }
-        });
-      }
-
-      function animateAboutSection() {
-        const aboutSection = document.querySelector('.about');
-        
-        gsap.to(aboutSection, {
-          opacity: 1,
-          y: 0,
-          duration: 1.2,
-          ease: 'power3.out',
-          scrollTrigger: {
-            trigger: '.about-container',
-            start: 'top 80%',
-            end: 'top 20%',
-            toggleActions: 'play none none reverse'
-          }
-        });
-
-        // Animate stats
-        const statItems = document.querySelectorAll('.stat-item');
-        statItems.forEach((item, index) => {
-          gsap.from(item, {
-            opacity: 0,
-            y: 30,
-            duration: 0.8,
-            delay: 0.8 + (index * 0.1),
-            ease: 'power2.out',
-            scrollTrigger: {
-              trigger: '.about-container',
-              start: 'top 60%',
-              toggleActions: 'play none none reverse'
-            }
+        // text animation logic
+        const progress = self.progress;
+        if (progress < 0.33) {
+          text1.style.opacity = 1; text2.style.opacity = 0; text3.style.opacity = 0;
+          const localProgress = progress / 0.33;
+          letters1.forEach((letter, i) => {
+            letter.style.opacity = localProgress > i / letters1.length ? 1 : 0;
           });
-        });
+        } else if (progress < 0.66) {
+          text1.style.opacity = 0; text2.style.opacity = 1; text3.style.opacity = 0;
+          const localProgress = (progress - 0.33) / 0.33;
+          letters2.forEach((letter, i) => {
+            letter.style.opacity = localProgress > i / letters2.length ? 1 : 0;
+          });
+        } else {
+          text1.style.opacity = 0; text2.style.opacity = 0; text3.style.opacity = 1;
+          const localProgress = (progress - 0.66) / 0.34;
+          letters3.forEach((letter, i) => {
+            letter.style.opacity = localProgress > i / letters3.length ? 1 : 0;
+          });
+        }
+      },
+      onLeave: () => drawImageScaled(images[frameCount]),
+      onLeaveBack: () => drawImageScaled(images[1])
+    }
+  });
+}
+
+
+  function animateAboutSection() {
+    const aboutSection = document.querySelector('.about');
+
+    gsap.to(aboutSection, {
+      opacity: 1,
+      y: 0,
+      duration: 1.2,
+      ease: 'power3.out',
+      scrollTrigger: {
+        trigger: '.about-container',
+        start: 'top 80%',
+        end: 'top 20%',
+        toggleActions: 'play none none reverse'
       }
+    });
 
-      let resizeTimeout;
-      window.addEventListener('resize', () => {
-        clearTimeout(resizeTimeout);
-        resizeTimeout = setTimeout(() => {
-          sizeCanvas();
-          scrollSpace.style.height = (window.innerHeight * 8) + 'px';
-          ScrollTrigger.refresh();
-          drawImageScaled(images[1]);
-        }, 120);
+    const statItems = document.querySelectorAll('.stat-item');
+    statItems.forEach((item, index) => {
+      gsap.from(item, {
+        opacity: 0,
+        y: 30,
+        duration: 0.8,
+        delay: 0.8 + (index * 0.1),
+        ease: 'power2.out',
+        scrollTrigger: {
+          trigger: '.about-container',
+          start: 'top 60%',
+          toggleActions: 'play none none reverse'
+        }
       });
+    });
+  }
 
-      preloadAll();
-    })();
+  let resizeTimeout;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(() => {
+      sizeCanvas();
+      // recompute lengths on resize
+      scrollLength = Math.max(frameCount * 60, window.innerHeight * 6);
+      holdLength = Math.round(window.innerHeight * 1.0);
+      scrollSpace.style.height = (scrollLength + holdLength + window.innerHeight) + 'px';
+      ScrollTrigger.refresh(true);
+      // redraw currently visible (or first) frame so canvas isn't blank
+      drawImageScaled(images[1]);
+    }, 120);
+  });
+
+  preloadAll();
+})();
+
   </script>
 </body>
 </html>
