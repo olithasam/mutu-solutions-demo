@@ -19,6 +19,7 @@
       --contrast-color: #ffffff; 
       --about-color: #131428;
       --about-p-color: #e8e7f7;
+      --font-color: #000000;
 }
 
     html, body {
@@ -259,17 +260,123 @@
       text-align: center;
     }   
 
+    /* Services Section */
+    section.services {
+      position: relative;
+      background: var(--background-color);
+      
+    }
+
+    .services-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 80px 20px;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .services-content {
+      display: flex;
+      width: 100%;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .left {
+      flex: 1;
+      position: relative;
+      min-height: 400px;
+    }
+
+    .service-item {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      transform: translateY(-50%);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.6s ease, transform 0.6s ease;
+      width: 100%;
+    }
+
+    .service-item.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .service-item.prev {
+      opacity: 0;
+      transform: translateY(-100%);
+    }
+
+    .service-item.next {
+      opacity: 0;
+      transform: translateY(100%);
+    }
+
+    .service-item h2 {
+      font-size: clamp(2rem, 4vw, 3.5rem);
+      font-weight: 600;
+      margin: 0;
+      color: var(--font-color);
+      cursor: pointer;
+      
+    }
+
+    .right {
+      flex: 1;
+      position: sticky;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    .video-container {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16/9;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    }
+
+    .video-container video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+
+    .video-container video.active {
+      opacity: 1;
+    }
+
     /* Responsive */
     @media (max-width: 768px) {
       .about-content {
         padding: 50px 30px;
       }
-    }
-    section.services {
-      padding: 80px 20px;
-      background: var(--surface-color);
-      color: var(--contrast-color);
-      text-align: center;
+
+      .services-content {
+        flex-direction: column;
+        gap: 40px;
+      }
+
+      .right {
+        position: relative;
+        top: auto;
+        transform: none;
+        width: 100%;
+      }
+
+      .service-item h2 {
+        font-size: 2rem;
+      }
     }
   </style>
 </head>
@@ -318,14 +425,51 @@
   </section>
 
   <section class="services" id="services">
-    <div class="services-content">
-      <h2>Our Services</h2>
-      <p>We offer a wide range of logistics services tailored to your needs.</p>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic quae magni alias optio? Error eum rerum et repellat sint enim pariatur laboriosam cum voluptas quos dolores inventore voluptatibus, debitis autem.</p>
-      <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Corrupti voluptates explicabo doloribus necessitatibus voluptas eum corporis nesciunt id tenetur, non nobis atque sit neque architecto esse sapiente consectetur expedita maxime.</p>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime nisi odio beatae praesentium. Maxime modi enim unde delectus qui hic pariatur voluptates vitae. Quidem, exercitationem iste totam omnis maxime aliquam.</p>
+    <div class="services-container">
+      <div class="services-content">
+        <div class="left">
+          <div class="service-item" data-service="0">
+            <h2>Optimizes fleet management and delivery routes</h2>
+          </div>
+          <div class="service-item" data-service="1">
+            <h2>Streamlines inventory control and storage operations</h2>
+          </div>
+          <div class="service-item" data-service="2">
+            <h2>Manages and tracks sea and freight shipments</h2>
+          </div>
+          <div class="service-item" data-service="3">
+            <h2>Handles personnel, payroll, and driver management</h2>
+          </div>
+          <div class="service-item" data-service="4">
+            <h2>Enables seamless electronic data exchange with partners</h2>
+          </div>
+        </div>
+
+        <div class="right">
+          <div class="video-container">
+            <video src="./assets/transport1.mp4" data-video="0" loop muted playsinline></video>
+            <video src="./assets/shipping.mp4" data-video="1" loop muted playsinline></video>
+            <video src="./assets/warehouse.mp4" data-video="2" loop muted playsinline></video>
+            <video src="./assets/transport1.mp4" data-video="3" loop muted playsinline></video>
+            <video src="./assets/shipping.mp4" data-video="4" loop muted playsinline></video>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
+
+  <div class="sample">
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad soluta, accusantium voluptas quas perspiciatis
+       atque error aliquid eos impedit optio amet doloremque tempora consequatur nihil repellendus sunt? Harum, similique quo.</p>
+       <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad soluta, accusantium voluptas quas perspiciatis
+       atque error aliquid eos impedit optio amet doloremque tempora consequatur nihil repellendus sunt? Harum, similique quo.</p>
+       <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad soluta, accusantium voluptas quas perspiciatis
+       atque error aliquid eos impedit optio amet doloremque tempora consequatur nihil repellendus sunt? Harum, similique quo.</p>
+       <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad soluta, accusantium voluptas quas perspiciatis
+       atque error aliquid eos impedit optio amet doloremque tempora consequatur nihil repellendus sunt? Harum, similique quo.</p>
+       <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad soluta, accusantium voluptas quas perspiciatis
+       atque error aliquid eos impedit optio amet doloremque tempora consequatur nihil repellendus sunt? Harum, similique quo.</p>
+  </div>
 
   <script>
     const hamburger = document.getElementById('hamburger');
@@ -419,6 +563,7 @@
         drawImageScaled(images[1]);
         startSequenceScroll();
         animateAboutSection();
+        animateServicesSection();
       }
     });
   }
@@ -493,22 +638,72 @@
         toggleActions: 'play none none reverse'
       }
     });
+  }
 
-    const statItems = document.querySelectorAll('.stat-item');
-    statItems.forEach((item, index) => {
-      gsap.from(item, {
-        opacity: 0,
-        y: 30,
-        duration: 0.8,
-        delay: 0.8 + (index * 0.1),
-        ease: 'power2.out',
-        scrollTrigger: {
-          trigger: '.about-container',
-          start: 'top 60%',
-          toggleActions: 'play none none reverse'
+  function animateServicesSection() {
+    const serviceItems = document.querySelectorAll('.service-item');
+    const videos = document.querySelectorAll('.video-container video');
+    const totalServices = serviceItems.length;
+    let currentIndex = 0;
+
+    // Set first service and video as active
+    serviceItems[0].classList.add('active');
+    videos[0].classList.add('active');
+    videos[0].play();
+
+    // Calculate scroll distance for each service
+    const scrollDistance = window.innerHeight * 0.8;
+    const totalScrollDistance = scrollDistance * (totalServices - 1);
+
+    // Create ScrollTrigger for the entire services section
+    ScrollTrigger.create({
+      trigger: '.services',
+      start: 'top top',
+      end: `+=${totalScrollDistance}`,
+      pin: '.services-container',
+      onUpdate: (self) => {
+        const progress = self.progress;
+        const newIndex = Math.min(Math.floor(progress * totalServices), totalServices - 1);
+        
+        if (newIndex !== currentIndex) {
+          switchService(newIndex);
+        }
+      },
+      onEnter: () => {
+        if (videos[currentIndex]) {
+          videos[currentIndex].play();
+        }
+      }
+    });
+
+    function switchService(newIndex) {
+      const oldIndex = currentIndex;
+      
+      // Update service items with direction classes
+      serviceItems.forEach((item, index) => {
+        item.classList.remove('active', 'prev', 'next');
+        
+        if (index === newIndex) {
+          item.classList.add('active');
+        } else if (index < newIndex) {
+          item.classList.add('prev');
+        } else {
+          item.classList.add('next');
         }
       });
-    });
+
+      // Update videos
+      videos.forEach(video => {
+        video.classList.remove('active');
+        video.pause();
+      });
+      
+      videos[newIndex].classList.add('active');
+      videos[newIndex].currentTime = 0;
+      videos[newIndex].play();
+
+      currentIndex = newIndex;
+    }
   }
 
   let resizeTimeout;
