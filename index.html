@@ -469,7 +469,7 @@ function startSequenceScroll() {
           });
 
           // 👇 Fade out all text near the end of the scroll
-          if (progress > 0.95) {
+          if (progress > 0.99) {
             text3.style.opacity = gsap.utils.mapRange(0.95, 1, 1, 0, progress);
           } else {
             text3.style.opacity = 1;
