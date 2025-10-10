@@ -263,8 +263,7 @@
     /* Services Section */
     section.services {
       position: relative;
-      background: var(--background-color);
-      
+      background: var(--background-color);      
     }
 
     .services-container {
@@ -288,6 +287,7 @@
       flex: 1;
       position: relative;
       min-height: 400px;
+      margin-top: -400px;
     }
 
     .service-item {
@@ -334,11 +334,13 @@
 
     .video-container {
       position: relative;
-      width: 100%;
+      width: 626px;
       aspect-ratio: 16/9;
       border-radius: 20px;
       overflow: hidden;
       box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+      height: 500px;
+      top: 50%;
     }
 
     .video-container video {
@@ -570,7 +572,7 @@
 
   function startSequenceScroll() {
     const frameObj = { index: 1 };
-    const scrollLength = Math.max(frameCount * 60, window.innerHeight * 6); 
+    const scrollLength = frameCount * 20; //scroll speed
 
     gsap.to(frameObj, {
       index: frameCount,
@@ -646,16 +648,13 @@
     const totalServices = serviceItems.length;
     let currentIndex = 0;
 
-    // Set first service and video as active
     serviceItems[0].classList.add('active');
     videos[0].classList.add('active');
     videos[0].play();
 
-    // Calculate scroll distance for each service
     const scrollDistance = window.innerHeight * 0.8;
     const totalScrollDistance = scrollDistance * (totalServices - 1);
 
-    // Create ScrollTrigger for the entire services section
     ScrollTrigger.create({
       trigger: '.services',
       start: 'top top',
@@ -679,7 +678,6 @@
     function switchService(newIndex) {
       const oldIndex = currentIndex;
       
-      // Update service items with direction classes
       serviceItems.forEach((item, index) => {
         item.classList.remove('active', 'prev', 'next');
         
@@ -692,7 +690,6 @@
         }
       });
 
-      // Update videos
       videos.forEach(video => {
         video.classList.remove('active');
         video.pause();
