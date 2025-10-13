@@ -7,6 +7,7 @@
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+   <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 
   <style>
     :root { 
@@ -497,6 +498,200 @@
       color: var(--font-color);
     }
 
+.request-quote-section {
+  background: #f8f9fa;
+  padding: 60px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.request-quote-section .container {
+  max-width: 600px;
+  width: 100%;
+  background: #ffffff;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  text-align: center;
+}
+
+.request-quote-section h2 {
+  font-size: 32px;
+  margin-bottom: 15px;
+  color: #333;
+}
+
+.request-quote-section p {
+  font-size: 16px;
+  margin-bottom: 30px;
+  color: #555;
+}
+
+.quote-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.quote-form input,
+.quote-form textarea {
+  padding: 12px 15px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 16px;
+  width: 100%;
+  transition: border-color 0.3s;
+}
+
+.quote-form input:focus,
+.quote-form textarea:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+.quote-form button {
+  padding: 12px;
+  background: #007bff;
+  color: #fff;
+  font-size: 18px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.quote-form button:hover {
+  background: #0056b3;
+}
+
+
+
+
+
+.site-footer {
+  background-color: #111;
+  color: #fff;
+  padding: 60px 20px 30px 20px;
+  font-family: 'Arial', sans-serif;
+}
+
+.footer-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: 0 auto;
+  gap: 40px;
+}
+
+.footer-about {
+  flex: 1 1 250px;
+  max-width: 300px;
+}
+
+.footer-about img {
+  width: 80px;
+  margin-bottom: 15px;
+}
+
+.footer-about p {
+  font-size: 14px;
+  line-height: 1.6;
+  color: #ccc;
+}
+
+.footer-links,
+.footer-contact,
+.footer-social {
+  flex: 1 1 200px;
+}
+
+.footer-links h3,
+.footer-contact h3,
+.footer-social h3 {
+  font-size: 18px;
+  margin-bottom: 15px;
+  color: #fff;
+}
+
+.footer-links ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-links li {
+  margin-bottom: 8px;
+}
+
+.footer-links a {
+  color: #ccc;
+  text-decoration: none;
+  transition: color 0.3s;
+  font-size: 14px;
+}
+
+.footer-links a:hover {
+  color: #007bff;
+}
+
+.footer-contact p {
+  font-size: 14px;
+  color: #ccc;
+  margin-bottom: 8px;
+}
+
+.social-icons {
+  display: flex;
+  gap: 12px;
+}
+
+.footer-social a {
+  font-size: 18px;
+  color: #ccc;
+  background: #222;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s;
+  text-decoration: none;
+}
+
+.footer-social a:hover {
+  background: #007bff;
+  color: #fff;
+  transform: scale(1.1);
+}
+
+.footer-bottom {
+  text-align: center;
+  margin-top: 40px;
+  border-top: 1px solid #333;
+  padding-top: 15px;
+  font-size: 14px;
+  color: #aaa;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .footer-container {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .footer-about img {
+    margin: 0 auto 10px auto;
+  }
+
+  .social-icons {
+    justify-content: center;
+  }
+}
      /* Responsive */
     @media (max-width: 1024px) {
       .services-container {
@@ -816,6 +1011,76 @@
       <a href="#">Learn More</a>
     </div>
   </div>
+
+ <section class="request-quote-section">
+  <div class="container">
+    <div class="request-quote-content">
+      <h2>Request a Quote</h2>
+      <p>Contact us today to discuss your logistics needs and receive a personalized quote.</p>
+      
+      <!-- Formspree Form -->
+      <form id="quoteForm" class="quote-form">
+        <input type="text" name="name" placeholder="Your Name" required>
+        <input type="email" name="_replyto" placeholder="Your Email" required>
+        <input type="text" name="company" placeholder="Company Name">
+        <textarea name="message" placeholder="Your Requirements" rows="4" required></textarea>
+        <button type="submit">Submit Request</button>
+      </form>
+
+      <!-- Success message -->
+      <p id="successMessage" style="display:none; color:green; margin-top:15px;">Thank you! Your request has been submitted.</p>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="footer-container">
+
+    <!-- Company Info -->
+    <div class="footer-about">
+      <img src="./assets/inntri-Logo0white.png" alt="Company Logo">
+      <p>
+        Mutu Solutions provides innovative logistics and transport management services 
+        designed to optimize your global supply chain. We ensure seamless delivery 
+        across land, sea, and air.
+      </p>
+    </div>
+
+    <!-- Quick Links -->
+    <div class="footer-links">
+      <h3>Quick Links</h3>
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#transport">Transport Systems</a></li>
+        <li><a href="#quote">Request a Quote</a></li>
+      </ul>
+    </div>
+
+    <!-- Contact Info -->
+    <div class="footer-contact">
+      <h3>Contact Us</h3>
+      <p><strong>Phone:</strong> +1 234 567 890</p>
+      <p><strong>Email:</strong> info@inntrilabs.com</p>
+      <p><strong>Address:</strong> 123 Logistics Street, Colombo, Sri Lanka</p>
+    </div>
+
+    <!-- Social Media -->
+    <div class="footer-social">
+      <h3>Follow Us</h3>
+      <div class="social-icons">
+        <a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Copyright -->
+  <div class="footer-bottom">
+    <p>&copy; 2025 Mutu Solutions. All rights reserved.</p>
+  </div>
+</footer>
+
   
 
 
@@ -1129,5 +1394,7 @@ function onAllLoaded() {
 
 
   </script>
+  <script src="quote.js"></script>
+ 
 </body>
 </html>
