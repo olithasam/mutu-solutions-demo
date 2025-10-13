@@ -1005,7 +1005,8 @@
     videos[0].play();
 
     const scrollDistance = window.innerHeight * 0.8;
-    const totalScrollDistance = scrollDistance * (totalServices - 1);
+    const speedMultiplier = 0.3; // Lower = faster scrolling (0.1-1.0)
+    const totalScrollDistance = (scrollDistance * (totalServices - 1)) * speedMultiplier;
 
     ScrollTrigger.create({
       trigger: '.services',
@@ -1079,7 +1080,8 @@ function animateVideoSliderSection() {
   texts[0].classList.add('active');
   videos[0].play();
 
-  const scrollDistance = window.innerHeight * (totalSlides - 1);
+  const speedFactor = 0.3; // Lower = faster (0.1-1.0)
+  const scrollDistance = window.innerHeight * (totalSlides - 1) * speedFactor;
 
   ScrollTrigger.create({
     trigger: section,
