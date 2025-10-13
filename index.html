@@ -58,7 +58,7 @@
       background: var(--nav-background-color);
       backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
-      border-radius: 10px;
+      border-radius: 40px;
       padding: 0px 30px;
       border: 5px solid rgba(255, 255, 255, 0.1);
       box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
@@ -437,14 +437,16 @@
       color: #1a1a1a;
       font-weight: 600;
       max-width: 40%;
+      margin-left: 40px;
     }
 
     .text-item p {
       font-size: 1.1rem;
       max-width: 50%;
-      text-align: right;
+      text-align: center;
       color: #666;
       line-height: 1.6;
+      margin-right: 30px;
     }
     .demo-container {
       background: var(--background-color);
@@ -459,6 +461,7 @@
       margin-bottom: 40px;
       font-weight: 350;
     }
+    
     .demo-text-1, .demo-text-2 {
       max-width: 800px;
       margin: 0 auto 40px auto;
@@ -555,6 +558,14 @@
       .hamburger {
         display: flex;
       }
+      .text-item{
+        display: grid;
+      }
+      .text-item h3, .text-item p {
+        margin-left: 10px;
+      }
+      
+      
     }
 
     
@@ -679,7 +690,7 @@
         <li><a href="#home">Home</a></li>
         <li><a href="#about">About</a></li>
         <li><a href="#services">Services</a></li>
-        <li><a href="#contact">Contact</a></li>
+        <li><a href="#demo-live">Demo</a></li>
       </nav>
     </div>
   </header>
@@ -759,35 +770,42 @@
 
       <div class="video-slider-text">
         <div class="text-item" data-text="0">
-          <h3>Ground Transport</h3>
-          <p>Optimized fleet management and delivery routes for efficient ground transportation across all regions.</p>
+          <h3>Intelligent Ground <br>Transportation Network</h3>
+          <p>Experience seamless overland logistics through our intelligent ground transport system. MUTU Solutions integrates advanced route optimization, fleet monitoring, and predictive analytics to minimize transit time and fuel consumption while ensuring safe and reliable deliveries across every destination.</p>
         </div>
+
         <div class="text-item" data-text="1">
-          <h3>Sea Freight</h3>
-          <p>Comprehensive sea freight solutions with real-time tracking and seamless port-to-port delivery.</p>
+          <h3>Global Sea Freight <br>and Maritime Solutions</h3>
+          <p>Our end-to-end sea freight services connect major international trade routes with precision. With real-time vessel tracking, automated documentation, and strategic port partnerships, MUTU Solutions ensures cost-effective, transparent, and sustainable ocean freight operations for businesses of all scales.</p>
         </div>
+
         <div class="text-item" data-text="2">
-          <h3>Warehousing</h3>
-          <p>State-of-the-art warehousing facilities with advanced inventory management and distribution systems.</p>
+          <h3>Smart Warehousing <br>and Distribution Management</h3>
+          <p>Optimize your supply chain with our high-tech warehousing facilities equipped with AI-driven inventory systems and climate-controlled storage. We manage goods from intake to dispatch, ensuring real-time visibility, accuracy, and faster order fulfillment for your operations.</p>
         </div>
+
         <div class="text-item" data-text="3">
-          <h3>Last Mile Delivery</h3>
-          <p>Fast and reliable last-mile delivery services ensuring your products reach customers on time.</p>
+          <h3>Reliable and Rapid <br>Last-Mile Delivery</h3>
+          <p>Deliver exceptional customer experiences with our agile last-mile delivery network. Using advanced location intelligence, flexible scheduling, and eco-friendly vehicles, we guarantee timely, transparent, and efficient deliveries to every doorstep—completing your logistics journey with precision.</p>
         </div>
       </div>
+
     </div>
   </div>
   <div class="demo-container">
    <h2>How We Simplify Your Process</h2>
-   <div class="demo-text-1">
-    <p>Experience a seamless logistics journey with MUTU Solutions. From the moment you place an order to the final delivery, our integrated platform ensures every step is efficient and transparent. Our advanced tracking system keeps you informed in real-time, while our optimized routes and inventory management reduce costs and improve delivery times. With MUTU Solutions, you can focus on growing your business while we handle the complexities of logistics.</p>
-   </div>
-   <div class="demo-text-2">
-    <p>Our commitment to sustainability means we continuously seek eco-friendly solutions, from optimizing delivery routes to reducing packaging waste. With MUTU Solutions, you can enhance your brand's reputation while contributing to a greener planet.</p>
+
+   <div class="demi-text">
+    <div class="demo-text-1">
+      <p>Experience a seamless logistics journey with MUTU Solutions. From the moment you place an order to the final delivery, our integrated platform ensures every step is efficient and transparent. Our advanced tracking system keeps you informed in real-time, while our optimized routes and inventory management reduce costs and improve delivery times. With MUTU Solutions, you can focus on growing your business while we handle the complexities of logistics.</p>
+    </div>
+    <div class="demo-text-2">
+      <p>Our commitment to sustainability means we continuously seek eco-friendly solutions, from optimizing delivery routes to reducing packaging waste. With MUTU Solutions, you can enhance your brand's reputation while contributing to a greener planet.</p>
+    </div>
    </div>
   </div>
 
-  <div class="demo-live">
+  <div class="demo-live" id="demo-live">
     <div class="live-demo">
       <img src="./assets/demodashboard.gif" alt="">
     </div>
@@ -810,97 +828,96 @@
     });
 
    (function () {
-  gsap.registerPlugin(ScrollTrigger);
+      gsap.registerPlugin(ScrollTrigger);
 
-  const frameCount = 125;
-  const framePath = i => `images/frame_${String(i).padStart(4,'0')}.jpg`;
-  const images = [];
-  let loadedCount = 0;
+      const frameCount = 125;
+      const framePath = i => `images/frame_${String(i).padStart(4,'0')}.jpg`;
+      const images = [];
+      let loadedCount = 0;
 
-  const canvas = document.getElementById('sequence');
-  const ctx = canvas.getContext('2d');
-  const loader = document.querySelector('.loader');
-  const progressText = document.getElementById('progress-text');
-  const text1 = document.getElementById('text1');
-  const text2 = document.getElementById('text2');
-  const text3 = document.getElementById('text3');
+      const canvas = document.getElementById('sequence');
+      const ctx = canvas.getContext('2d');
+      const loader = document.querySelector('.loader');
+      const progressText = document.getElementById('progress-text');
+      const text1 = document.getElementById('text1');
+      const text2 = document.getElementById('text2');
+      const text3 = document.getElementById('text3');
 
-  const texts = [
-    { element: text1, content: 'Digital Transformation' },
-    { element: text2, content: 'For Logistics Leaders' },
-    { element: text3, content: 'Built on ServiceNow' }
-  ];
+      const texts = [
+        { element: text1, content: 'Digital Transformation' },
+        { element: text2, content: 'For Logistics Leaders' },
+        { element: text3, content: 'Built on ServiceNow' }
+      ];
 
-  texts.forEach(({ element, content }) => {
-    element.innerHTML = '';
-    content.split('').forEach(char => {
-      const span = document.createElement('span');
-      span.textContent = char === ' ' ? '\u00A0' : char;
-      element.appendChild(span);
-    });
-  });
+      texts.forEach(({ element, content }) => {
+        element.innerHTML = '';
+        content.split('').forEach(char => {
+          const span = document.createElement('span');
+          span.textContent = char === ' ' ? '\u00A0' : char;
+          element.appendChild(span);
+        });
+      });
 
-  const letters1 = text1.querySelectorAll('span');
-  const letters2 = text2.querySelectorAll('span');
-  const letters3 = text3.querySelectorAll('span');
+      const letters1 = text1.querySelectorAll('span');
+      const letters2 = text2.querySelectorAll('span');
+      const letters3 = text3.querySelectorAll('span');
 
-  function sizeCanvas() {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-  }
-  sizeCanvas();
+      function sizeCanvas() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+      }
+      sizeCanvas();
 
-  function drawImageScaled(img) {
-    if (!img) return;
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    const scale = Math.max(canvas.width / img.width, canvas.height / img.height);
-    const w = img.width * scale;
-    const h = img.height * scale;
-    const x = (canvas.width - w) / 2;
-    const y = (canvas.height - h) / 2;
-    ctx.drawImage(img, x, y, w, h);
-  }
+      function drawImageScaled(img) {
+        if (!img) return;
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        const scale = Math.max(canvas.width / img.width, canvas.height / img.height);
+        const w = img.width * scale;
+        const h = img.height * scale;
+        const x = (canvas.width - w) / 2;
+        const y = (canvas.height - h) / 2;
+        ctx.drawImage(img, x, y, w, h);
+      }
 
- async function preloadAll() {
-  const promises = [];
-  for (let i = 1; i <= frameCount; i++) {
-    const url = framePath(i);
-    const p = fetch(url)
-      .then(r => r.blob())
-      .then(blob => createImageBitmap(blob))
-      .then(bitmap => {
-        images[i] = bitmap;
-        loadedCount++;
-        progressText.textContent = `Loading ${Math.round(loadedCount / frameCount * 100)}%`;
-      })
-      .catch(err => console.error('frame load error', url, err));
-    promises.push(p);
-  }
-  await Promise.all(promises);
-  onAllLoaded();
-}
-
-function onAllLoaded() {
-  gsap.to(loader, {
-    opacity: 0,
-    duration: 0.6,
-    ease: 'power2.out',
-    onComplete() {
-      loader.style.display = 'none';
-      drawImageScaled(images[1]);
-
-      // Initialize all animations in order
-      startSequenceScroll();
-      animateAboutSection();
-      animateServicesSection();
-
-      // 🟢 Initialize the video slider after service pin is set
-      setTimeout(() => {
-        animateVideoSliderSection();
-      }, 800);
+    async function preloadAll() {
+      const promises = [];
+      for (let i = 1; i <= frameCount; i++) {
+        const url = framePath(i);
+        const p = fetch(url)
+          .then(r => r.blob())
+          .then(blob => createImageBitmap(blob))
+          .then(bitmap => {
+            images[i] = bitmap;
+            loadedCount++;
+            progressText.textContent = `Loading ${Math.round(loadedCount / frameCount * 100)}%`;
+          })
+          .catch(err => console.error('frame load error', url, err));
+        promises.push(p);
+      }
+      await Promise.all(promises);
+      onAllLoaded();
     }
-  });
-}
+
+    function onAllLoaded() {
+      gsap.to(loader, {
+        opacity: 0,
+        duration: 0.6,
+        ease: 'power2.out',
+        onComplete() {
+          loader.style.display = 'none';
+          drawImageScaled(images[1]);
+
+          // Initialize all animations in order
+          startSequenceScroll();
+          animateAboutSection();
+          animateServicesSection();
+
+          setTimeout(() => {
+            animateVideoSliderSection();
+          }, 800);
+        }
+      });
+    }
 
   function startSequenceScroll() {
     const frameObj = { index: 1 };
@@ -1057,12 +1074,10 @@ function animateVideoSliderSection() {
   const section = document.querySelector('.video-slider-container');
   const totalSlides = videos.length;
 
-  // Initial state
   videos[0].classList.add('active');
   texts[0].classList.add('active');
   videos[0].play();
 
-  // Create ScrollTrigger for slider
   const scrollDistance = window.innerHeight * (totalSlides - 1);
 
   ScrollTrigger.create({
@@ -1093,8 +1108,6 @@ function animateVideoSliderSection() {
   });
 }
 
-
-// initialize it after all preload & other triggers
 function onAllLoaded() {
   gsap.to(loader, {
     opacity: 0,
