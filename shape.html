@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+    .box{
+  width: 300px;
+  height: 200px;
+  background: black;
+  position: relative;
+}
+
+.box::after{
+  content:"";
+  position:absolute;
+  right:0;
+  bottom:0;
+  width:80px;
+  height:80px;
+  background:white;
+  clip-path: polygon(
+    100% 0,      /* Point A: top edge, 70% from left */
+    100% 100%,  /* Point B: bottom-right corner */
+    0 100%      /* Point C: bottom-left corner */
+  );
+}
+
+</style>
+</head>
+
+<body>
+    <div class="box"></div>
+
+    
+</body>
+</html>
