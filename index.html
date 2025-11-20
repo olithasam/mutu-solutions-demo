@@ -24,6 +24,7 @@
       --font-color: #000000;
       --accent-color: #00d4ff;
       --demo-bg-color: #004764;
+      --para-font-color: #5B5B5B;
 
     }
 
@@ -887,7 +888,7 @@
     }
     
 
-     .demo-container {
+     /* .demo-container {
             background: var(--background-color);
             padding: 80px 20px;
             text-align: center;
@@ -976,12 +977,12 @@
             .demo-text-1, .demo-text-2 {
                 text-align: center;
             }
-        }
+        } */
 
 
 
 
-    .demo-live {
+    /* .demo-live {
       display: flex;
       flex-wrap: wrap;
       align-items: center;
@@ -1073,7 +1074,7 @@
 
     .quote-form button:hover {
       background: #0056b3;
-    }
+    } */
 
 
 
@@ -1352,6 +1353,95 @@
         margin-top: 70px;
       }
     }
+
+.process-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    padding: 80px 60px;
+    background: white;
+}
+
+/* LEFT SIDE */
+.process-left {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Custom shape video container */
+.video-box {
+    width: 100%;
+    height: 260px;
+    background: #000;
+    border-radius: 0 60px 0 60px; /* Same shape as your screenshot */
+    overflow: hidden;
+    position: relative;
+}
+
+.video-box video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Heading Under Video */
+.process-left h3 {
+    margin-top: 25px;
+    font-size: 2rem;
+    font-weight: 600;
+    color: #00515b;
+}
+
+/* Link Under Heading */
+.process-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: #00BCD4;
+    margin-top: 12px;
+    font-size: 1rem;
+    font-weight: 500;
+    text-decoration: none;
+}
+
+.process-link:hover {
+    gap: 12px;
+}
+
+/* RIGHT SIDE */
+.process-right {
+    position: relative;
+}
+
+/* First paragraph starts halfway down the left video height */
+.first-para {
+    margin-top: 130px; /* Half of 260px video height */
+    font-size: 0.97rem;
+    line-height: 1.8;
+    opacity: 0.9;
+    color: var(--para-font-color);
+}
+
+.process-right p {
+    font-size: 0.97rem;
+    line-height: 1.8;
+    opacity: 0.9;
+    margin-bottom: 25px;
+    color: var(--para-font-color);
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+    .process-section {
+        grid-template-columns: 1fr;
+    }
+
+    .first-para {
+        margin-top: 40px;
+    }
+}
+
+
 
 
 
@@ -1672,12 +1762,12 @@
 
         <div class="right">
           <div class="video-container">
-            <video src="./assets/transport1.mp4" data-video="0" loop muted playsinline class="active"></video>
-            <video src="./assets/shipping.mp4" data-video="1" loop muted playsinline></video>
-            <video src="./assets/warehouse.mp4" data-video="2" loop muted playsinline></video>
-            <video src="./assets/transport1.mp4" data-video="3" loop muted playsinline></video>
-            <video src="./assets/shipping.mp4" data-video="4" loop muted playsinline></video>
-            <video src="./assets/warehouse.mp4" data-video="5" loop muted playsinline></video>
+            <video src="./assets/serv1.mp4" data-video="0" loop muted playsinline class="active"></video>
+            <video src="./assets/serv2.mp4" data-video="1" loop muted playsinline></video>
+            <video src="./assets/serv3.mp4" data-video="2" loop muted playsinline></video>
+            <video src="./assets/serv4.mp4" data-video="3" loop muted playsinline></video>
+            <video src="./assets/serv5.mp4" data-video="4" loop muted playsinline></video>
+            <video src="./assets/serv6.mp4" data-video="5" loop muted playsinline></video>
             
             <div class="navigation-arrows">
               <button class="nav-arrow prev-arrow">
@@ -1751,8 +1841,45 @@
 
     </div>
   </div>
+
+
+
+<section class="process-section">
+    <div class="process-left">
+        <div class="video-box">
+            <video src="./assets/demo-video.mp4" autoplay muted loop></video>
+        </div>
+
+        <h3>How we simplify your process?</h3>
+
+        <a href="#demo" class="process-link">
+            Try our solution demo
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                 stroke-linecap="round" stroke-linejoin="round">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+        </a>
+    </div>
+
+    <div class="process-right">
+        <p class="first-para">
+            Experience a seamless logistics journey with MUTU Solutions. From the moment you place an order to 
+            the final delivery, our integrated platform ensures every step is efficient and transparent. 
+            Our advanced tracking system keeps you informed in real-time, while our optimized routes and 
+            inventory management reduce costs and improve delivery times.
+        </p>
+
+        <p>
+            Our commitment to sustainability means we continuously seek eco-friendly solutions, 
+            from optimizing delivery routes to reducing packaging waste. With MUTU Solutions, you can 
+            enhance your brand’s reputation while contributing to a greener planet.
+        </p>
+    </div>
+</section>
+
+
   
-  <div class="demo-container">
+  <!-- <div class="demo-container">
         <h2>How We Simplify Your Process</h2>
         
         <div class="demo-content">
@@ -1768,11 +1895,11 @@
             </div>
             
             <div class="demo-image">
-                <!-- Replace with your actual image path -->
+               
                 <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="MUTU Solutions Logistics Process">
             </div>
         </div>
-    </div>
+    </div> -->
 
 <section class="demo-section" id="demo">
     <!-- LEFT GIF -->
