@@ -1,625 +1,439 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Mutu Solutions</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MUTU Solutions - Simplify Your Logistics Process</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-   <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
-   <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js" crossorigin="anonymous"></script>
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            color: #1a1a1a;
+            line-height: 1.6;
+        }
 
-  <style>
-    /* Base Styles */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Inter', sans-serif;
-  color: #0d0d0d;
-}
-body {
-  background: #fff;
-  line-height: 1.6;
-}
+        /* Hero Section */
+        .hero-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            min-height: 50vh;
+            background: white;
+            position: relative;
+        }
 
-/* Navigation */
-.nav {
-  position: absolute;
-  top: 20px;
-  left: 0;
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 80px;
-  z-index: 100;
-}
-.nav .logo {
-  font-size: 32px;
-  font-weight: 700;
-  color: white;
-}
-.nav ul {
-  display: flex;
-  gap: 40px;
-  list-style: none;
-  color: white;
-  font-size: 15px;
-}
-.nav ul li {
-  position: relative;
-  cursor: pointer;
-}
-.dropdown-menu {
-  display: none;
-  position: absolute;
-  top: 30px;
-  left: 0;
-  background: rgba(255, 255, 255, 0.9);
-  padding: 15px 20px;
-  border-radius: 8px;
-  list-style: none;
-  width: 160px;
-}
-.dropdown:hover .dropdown-menu {
-  display: block;
-}
-.dropdown-menu li {
-  padding: 8px 0;
-  font-size: 14px;
-  cursor: pointer;
-}
+        .hero-left {
+            position: relative;
+            background: #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 60px 40px;
+        }
 
-/* Hero Section */
-.hero {
-  width: 100%;
-  height: 680px;
-  background: url('https://images.unsplash.com/photo-1504556106489-61b44a0a6b16') center/cover;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.hero h1 {
-  font-size: 48px;
-  font-weight: 700;
-  color: white;
-  text-align: center;
-}
-.hero span {
-  color: #27d3ff;
-}
+        .hero-left::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 150px;
+            height: 150px;
+            background: #000;
+            border-top-left-radius: 80px;
+        }
 
-/* Intro */
-.intro {
-  padding: 100px 200px;
-  font-size: 24px;
-  text-align: center;
-  max-width: 1000px;
-  margin: auto;
-}
+        .hero-content {
+            max-width: 400px;
+            position: relative;
+            z-index: 2;
+        }
 
-/* Feature block */
-.feature-block {
-  padding: 150px 200px;
-  position: relative;
-  display: flex;
-  align-items: center;
-  gap: 60px;
-}
-.feature-block .text {
-  font-size: 20px;
-  width: 240px;
-  opacity: 0.7;
-}
-.feature-block .box {
-  width: 450px;
-  height: 300px;
-  background: #000;
-  border-radius: 40px 10px 40px 10px;
-}
-.btn {
-  padding: 12px 30px;
-  background: #27d3ff;
-  border: none;
-  border-radius: 8px;
-  font-size: 15px;
-  cursor: pointer;
-  margin-left: auto;
-}
+        .hero-content h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 30px;
+            color: #000;
+        }
 
-/* Logistics Section */
-.logistics {
-  padding: 100px 200px;
-  text-align: center;
-}
-.logistics-wrapper {
-  margin-top: 80px;
-  display: flex;
-  gap: 80px;
-  align-items: center;
-}
-.logistics-box {
-  width: 420px;
-  height: 320px;
-  background: #000;
-  border-radius: 40px 10px 40px 10px;
-}
-.logistics-text {
-  max-width: 500px;
-  text-align: left;
-}
-.logistics-text h3 {
-  font-size: 28px;
-  margin-bottom: 15px;
-}
+        .hero-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #00BCD4;
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
 
-/* Process Section */
-.process {
-  padding: 150px 200px;
-}
-.process h3 {
-  font-size: 28px;
-  margin-bottom: 15px;
-}
-.link {
-  color: #27d3ff;
-  font-size: 16px;
-  text-decoration: none;
-}
+        .hero-link:hover {
+            color: #00ACC1;
+            gap: 12px;
+        }
 
-/* Demo Section */
-.demo {
-  background: #003d56;
-  padding: 150px 200px;
-  color: white;
-}
-.demo-card h2 {
-  font-size: 32px;
-  margin-bottom: 20px;
-}
+        .hero-link svg {
+            width: 18px;
+            height: 18px;
+        }
 
-/* Contact Section */
-.contact {
-  padding: 120px 200px;
-  display: flex;
-  justify-content: space-between;
-  gap: 120px;
-}
-.quote h2 {
-  font-size: 32px;
-  margin: 10px 0;
-}
-.form {
-  width: 380px;
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-}
-.form input,
-.form textarea {
-  padding: 10px;
-  border: none;
-  border-bottom: 1px solid #bbb;
-  outline: none;
-}
-.form textarea {
-  height: 120px;
-  resize: none;
-}
-.form button {
-  width: 120px;
-  padding: 10px;
-  background: #27d3ff;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-}
+        .hero-right {
+            padding: 60px 60px 60px 80px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            background: white;
+        }
 
+        .hero-right p {
+            font-size: 0.95rem;
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
 
-  </style>
+        .hero-right p:first-child {
+            color: #333;
+        }
+
+        .hero-right p:last-child {
+            color: #999;
+            font-size: 0.9rem;
+        }
+
+        /* Demo Section */
+        .demo-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            min-height: 50vh;
+        }
+
+        .demo-left {
+            background: white;
+            position: relative;
+            padding: 60px;
+        }
+
+        .demo-left::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 200px;
+            height: 200px;
+            background: white;
+            border-top-left-radius: 100px;
+        }
+
+        .demo-right {
+            background: #006064;
+            padding: 60px 80px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            color: white;
+        }
+
+        .demo-right h2 {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 30px;
+        }
+
+        .demo-right p {
+            font-size: 0.95rem;
+            line-height: 1.7;
+            margin-bottom: 30px;
+            opacity: 0.95;
+        }
+
+        .demo-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #00BCD4;
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            margin-bottom: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .demo-link:hover {
+            gap: 12px;
+        }
+
+        .demo-link svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            min-height: 50vh;
+            background: #f5f5f5;
+            padding: 80px 60px;
+        }
+
+        .contact-left {
+            padding-right: 60px;
+        }
+
+        .contact-left .subtitle {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 10px;
+        }
+
+        .contact-left h2 {
+            font-size: 2rem;
+            font-weight: 600;
+            line-height: 1.3;
+            margin-bottom: 30px;
+            color: #1a1a1a;
+        }
+
+        .contact-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #00BCD4;
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .contact-link:hover {
+            gap: 12px;
+        }
+
+        .contact-link svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        .contact-right h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 30px;
+            color: #1a1a1a;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 0;
+            border: none;
+            border-bottom: 1px solid #ddd;
+            background: transparent;
+            font-size: 0.95rem;
+            font-family: inherit;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-bottom-color: #00BCD4;
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: #999;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .submit-btn {
+            background: #00BCD4;
+            color: white;
+            border: none;
+            padding: 12px 32px;
+            font-size: 0.95rem;
+            font-weight: 500;
+            border-radius: 4px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            background: #00ACC1;
+            gap: 12px;
+        }
+
+        .submit-btn svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        /* Curved SVG accent on hero-left */
+        .curved-accent {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 100px;
+            height: 60px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 968px) {
+            .hero-section,
+            .demo-section,
+            .contact-section {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-left,
+            .demo-left {
+                min-height: 40vh;
+            }
+
+            .hero-right,
+            .demo-right {
+                padding: 40px;
+            }
+
+            .contact-section {
+                padding: 60px 40px;
+            }
+
+            .contact-left {
+                padding-right: 0;
+                margin-bottom: 40px;
+            }
+
+            .hero-content h1,
+            .contact-left h2 {
+                font-size: 2rem;
+            }
+        }
+    </style>
 </head>
 <body>
-<li>Trip Service</li>
-<li>Shipping Services</li>
-</ul>
-</li>
-<li>Solutions Demo</li>
-<li>Pricing</li>
-<li>About</li>
-<li>Contact</li>
-</ul>
-</nav>
-</header>
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-left">
+            <svg class="curved-accent" viewBox="0 0 100 60" xmlns="http://www.w3.org/2000/svg">
+                <path d="M 10 10 Q 10 30 30 30 L 90 30" stroke="#00BCD4" stroke-width="2" fill="none" stroke-linecap="round"/>
+            </svg>
+            <div class="hero-content">
+                <h1>How we simplify your process?</h1>
+                <a href="#demo" class="hero-link">
+                    Try our solution demo
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+        <div class="hero-right">
+            <p>Experience a seamless logistics journey with MUTU Solutions. From the moment you place an order to the final delivery, our integrated platform ensures every step is efficient and transparent. Our advanced tracking system keeps you informed in real-time, while our optimized routes and inventory management reduce costs and improve delivery times. With MUTU Solutions, you can focus on growing your business while we handle the complexities of logistics.</p>
+            <p>Our commitment to sustainability means we continuously seek eco-friendly solutions, from optimizing delivery routes to reducing packaging waste. With MUTU Solutions, you can enhance your brand's reputation while contributing to a greener planet.</p>
+        </div>
+    </section>
 
+    <!-- Demo Section -->
+    <section class="demo-section" id="demo">
+        <div class="demo-left"></div>
+        <div class="demo-right">
+            <h2>Solution demo.</h2>
+            <p>Watch our product demo to see how MUTU Solutions can transform your logistics operations.</p>
+            <a href="./assets/shipping.mp4" class="demo-link">
+                Watch the videos
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
+            </a>
+            <a href="#try" class="demo-link">
+                Try our solution demo
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
+            </a>
+        </div>
+    </section>
 
-<!-- Hero Section -->
-<section class="hero">
-<div class="hero-content">
-<h1>Digital Transformation for <span>Logistics Leaders.</span></h1>
-</div>
-</section>
+    <!-- Contact Section -->
+    <section class="contact-section" id="contact">
+        <div class="contact-left">
+            <p class="subtitle">Request a free Quote:</p>
+            <h2>Let's build something extraordinary together.</h2>
+            <a href="#" class="contact-link">
+                Contact us
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
+            </a>
+        </div>
+        <div class="contact-right">
+            <h3>Hello!</h3>
+            <form id="contactForm">
+                <div class="form-group">
+                    <input type="text" placeholder="Jayanthan Jayanthiran" required>
+                </div>
+                <div class="form-group">
+                    <input type="email" placeholder="What's your Email Id?" required>
+                </div>
+                <div class="form-group">
+                    <input type="tel" placeholder="A Number We Can Buzz">
+                </div>
+                <div class="form-group">
+                    <textarea placeholder="Drop Your Message Here"></textarea>
+                </div>
+                <button type="submit" class="submit-btn">
+                    Send
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </button>
+            </form>
+        </div>
+    </section>
 
-
-<!-- Intro Text -->
-<section class="intro">
-<p>MUTU Solutions delivers seamless logistics, integrating ground, air, and warehousing to make your supply chain visible and efficient.</p>
-</section>
-
-
-<!-- Feature Slider Placeholder -->
-<section class="feature-block">
-<div class="text">Optimises fleet management and delivery routes</div>
-<div class="box"></div>
-<button class="btn">Our Services →</button>
-</section>
-
-
-<!-- Logistics Section -->
-<section class="logistics">
-<h2>Empowering Your Business with Tailored Logistics Solutions.</h2>
-<div class="logistics-wrapper">
-<div class="logistics-box"></div>
-<div class="logistics-text">
-<h3>Intelligent ground transportation network.</h3>
-<p>Deliver exceptional customer experiences with our agile last-mile delivery network...</p>
-</div>
-</div>
-</section>
-
-
-<!-- Process Section -->
-<section class="process">
-<h3>How we simplify your process?</h3>
-<a class="link" href="#">Try our solution demo →</a>
-</section>
-
-
-<!-- Demo Section -->
-<section class="demo">
-<div class="demo-card">
-<h2>Solution demo.</h2>
-<p>Watch our product demo to see how MUTU Solutions can transform your logistics operations.</p>
-</div>
-</section>
-
-
-<!-- Contact Section -->
-<section class="contact">
-<div class="quote">
-<h3>Request a free Quote:</h3>
-<h2>Let's build something extraordinary together.</h2>
-<a href="#">Contact us →</a>
-</div>
-
-
-<form class="form">
-<h3>Hello!</h3>
-<input type="text" placeholder="What should we call you?" />
-<input type="email" placeholder="Where can we email you?" />
-<input type="text" placeholder="A number we can buzz" />
-<textarea placeholder="Drop your message here"></textarea>
-<button class="btn">Send →</button>
-</form>
-</section>
-
-
-
-  
-
-
-  <script>
-    const hamburger = document.getElementById('hamburger');
-    const navMenu = document.getElementById('navMenu');
-
-    hamburger.addEventListener('click', () => {
-      hamburger.classList.toggle('active');
-      navMenu.classList.toggle('open');
-    });
-
-   (function () {
-      gsap.registerPlugin(ScrollTrigger);
-
-      const frameCount = 125;
-      const framePath = i => `images/frame_${String(i).padStart(4,'0')}.jpg`;
-      const images = [];
-      let loadedCount = 0;
-
-      const canvas = document.getElementById('sequence');
-      const ctx = canvas.getContext('2d');
-      const loader = document.querySelector('.loader');
-      const progressText = document.getElementById('progress-text');
-      const text1 = document.getElementById('text1');
-      const text2 = document.getElementById('text2');
-      const text3 = document.getElementById('text3');
-
-      const texts = [
-        { element: text1, content: 'Digital Transformation' },
-        { element: text2, content: 'For Logistics Leaders' },
-        { element: text3, content: 'Built on ServiceNow' }
-      ];
-
-      texts.forEach(({ element, content }) => {
-        element.innerHTML = '';
-        content.split('').forEach(char => {
-          const span = document.createElement('span');
-          span.textContent = char === ' ' ? '\u00A0' : char;
-          element.appendChild(span);
+    <script>
+        // Form submission handler
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form values
+            const formData = new FormData(this);
+            
+            // Show success message (you can customize this)
+            alert('Thank you for your message! We will get back to you soon.');
+            
+            // Reset form
+            this.reset();
         });
-      });
 
-      const letters1 = text1.querySelectorAll('span');
-      const letters2 = text2.querySelectorAll('span');
-      const letters3 = text3.querySelectorAll('span');
-
-      function sizeCanvas() {
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-      }
-      sizeCanvas();
-
-      function drawImageScaled(img) {
-        if (!img) return;
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        const scale = Math.max(canvas.width / img.width, canvas.height / img.height);
-        const w = img.width * scale;
-        const h = img.height * scale;
-        const x = (canvas.width - w) / 2;
-        const y = (canvas.height - h) / 2;
-        ctx.drawImage(img, x, y, w, h);
-      }
-
-    async function preloadAll() {
-      const promises = [];
-      for (let i = 1; i <= frameCount; i++) {
-        const url = framePath(i);
-        const p = fetch(url)
-          .then(r => r.blob())
-          .then(blob => createImageBitmap(blob))
-          .then(bitmap => {
-            images[i] = bitmap;
-            loadedCount++;
-            progressText.textContent = `Loading ${Math.round(loadedCount / frameCount * 100)}%`;
-          })
-          .catch(err => console.error('frame load error', url, err));
-        promises.push(p);
-      }
-      await Promise.all(promises);
-      onAllLoaded();
-    }
-
-    function onAllLoaded() {
-      gsap.to(loader, {
-        opacity: 0,
-        duration: 0.6,
-        ease: 'power2.out',
-        onComplete() {
-          loader.style.display = 'none';
-          drawImageScaled(images[1]);
-
-          // Initialize all animations in order
-          startSequenceScroll();
-          animateAboutSection();
-          animateServicesSection();
-
-          setTimeout(() => {
-            animateVideoSliderSection();
-          }, 800);
-        }
-      });
-    }
-
-  function startSequenceScroll() {
-    const frameObj = { index: 1 };
-    const scrollLength = frameCount * 22; //scroll speed
-
-    gsap.to(frameObj, {
-      index: frameCount,
-      ease: "none",
-      snap: v => Math.round(v),
-      scrollTrigger: {
-        trigger: '.canvas-wrapper',
-        start: "top top",
-        end: "+=" + scrollLength,
-        scrub: 0.6,
-        pin: true,
-        anticipatePin: 1,
-        onUpdate: self => {
-          const idx = Math.min(Math.max(Math.round(frameObj.index), 1), frameCount);
-          drawImageScaled(images[idx]);
-
-          const progress = self.progress;
-
-          if (progress < 0.05) {
-            text1.style.opacity = 0; text2.style.opacity = 0; text3.style.opacity = 0;
-          } else if (progress < 0.35) {
-            text1.style.opacity = 1; text2.style.opacity = 0; text3.style.opacity = 0;
-            const localProgress = (progress - 0.05) / 0.3;
-            letters1.forEach((letter, i) => {
-              letter.style.opacity = localProgress > i / letters1.length ? 1 : 0;
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
             });
-          } else if (progress < 0.68) {
-            text1.style.opacity = 0; text2.style.opacity = 1; text3.style.opacity = 0;
-            const localProgress = (progress - 0.35) / 0.33;
-            letters2.forEach((letter, i) => {
-              letter.style.opacity = localProgress > i / letters2.length ? 1 : 0;
-            });
-          } else {
-            text1.style.opacity = 0; text2.style.opacity = 0; text3.style.opacity = 1;
-            const localProgress = (progress - 0.68) / 0.32;
-            letters3.forEach((letter, i) => {
-              letter.style.opacity = localProgress > i / letters3.length ? 1 : 0;
-            });
-          }
-        },
-        onLeave: () => {
-          drawImageScaled(images[frameCount]);
-          gsap.to([text1, text2, text3], {
-            opacity: 0,
-            duration: 0.3
-          });
-        },
-        onEnterBack: () => {
-          text3.style.opacity = 1;
-        }
-      }
-    });
-  }
-
-  function animateAboutSection() {
-    const aboutSection = document.querySelector('.about');
-
-    gsap.to(aboutSection, {
-      opacity: 1,
-      y: 0,
-      duration: 1.2,
-      ease: 'power3.out',
-      scrollTrigger: {
-        trigger: '.about-container',
-        start: 'top 80%',
-        end: 'top 20%',
-        toggleActions: 'play none none reverse'
-      }
-    });
-  }
-
-  function animateServicesSection() {
-    const serviceItems = document.querySelectorAll('.service-item');
-    const videos = document.querySelectorAll('.video-container video');
-    const totalServices = serviceItems.length;
-    let currentIndex = 0;
-
-    serviceItems[0].classList.add('active');
-    videos[0].classList.add('active');
-    videos[0].play();
-
-    const scrollDistance = window.innerHeight * 0.8;
-    const speedMultiplier = 0.3; // Lower = faster scrolling (0.1-1.0)
-    const totalScrollDistance = (scrollDistance * (totalServices - 1)) * speedMultiplier;
-
-    ScrollTrigger.create({
-      trigger: '.services',
-      start: 'top top',
-      end: `+=${totalScrollDistance}`,
-      pin: '.services-container',
-      onUpdate: (self) => {
-        const progress = self.progress;
-        const newIndex = Math.min(Math.floor(progress * totalServices), totalServices - 1);
-        
-        if (newIndex !== currentIndex) {
-          switchService(newIndex);
-        }
-      },
-      onEnter: () => {
-        if (videos[currentIndex]) {
-          videos[currentIndex].play();
-        }
-      }
-    });
-
-    function switchService(newIndex) {
-      const oldIndex = currentIndex;
-      
-      serviceItems.forEach((item, index) => {
-        item.classList.remove('active', 'prev', 'next');
-        
-        if (index === newIndex) {
-          item.classList.add('active');
-        } else if (index < newIndex) {
-          item.classList.add('prev');
-        } else {
-          item.classList.add('next');
-        }
-      });
-
-      videos.forEach(video => {
-        video.classList.remove('active');
-        video.pause();
-      });
-      
-      videos[newIndex].classList.add('active');
-      videos[newIndex].currentTime = 0;
-      videos[newIndex].play();
-
-      currentIndex = newIndex;
-    }
-  }
-
-  let resizeTimeout;
-  window.addEventListener('resize', () => {
-    clearTimeout(resizeTimeout);
-    resizeTimeout = setTimeout(() => {
-      sizeCanvas();
-      ScrollTrigger.refresh(true);
-      const currentFrame = Math.round(frameObj?.index || 1);
-      drawImageScaled(images[currentFrame]);
-    }, 120);
-  });
-
-  preloadAll();
-})();
-
-function animateVideoSliderSection() {
-  const videos = document.querySelectorAll('.video-slider video');
-  const texts = document.querySelectorAll('.text-item');
-  const section = document.querySelector('.video-slider-container');
-  const totalSlides = videos.length;
-
-  videos[0].classList.add('active');
-  texts[0].classList.add('active');
-  videos[0].play();
-
-  const speedFactor = 0.3; // Lower = faster (0.1-1.0)
-  const scrollDistance = window.innerHeight * (totalSlides - 1) * speedFactor;
-
-  ScrollTrigger.create({
-    trigger: section,
-    start: "top top",
-    end: `+=${scrollDistance}`,
-    pin: true,
-    scrub: 1,
-    onUpdate: (self) => {
-      const progress = self.progress;
-      const newIndex = Math.min(Math.floor(progress * totalSlides), totalSlides - 1);
-
-      videos.forEach((video, i) => {
-        if (i === newIndex) {
-          if (!video.classList.contains("active")) {
-            videos.forEach(v => { v.pause(); v.classList.remove("active"); });
-            texts.forEach(t => t.classList.remove("active"));
-            video.classList.add("active");
-            texts[newIndex].classList.add("active");
-            video.currentTime = 0;
-            video.play();
-          }
-        }
-      });
-    },
-    onEnter: () => videos[0].play(),
-    onLeave: () => videos.forEach(v => v.pause())
-  });
-}
-
-function onAllLoaded() {
-  gsap.to(loader, {
-    opacity: 0,
-    duration: 0.6,
-    ease: 'power2.out',
-    onComplete() {
-      loader.style.display = 'none';
-      drawImageScaled(images[1]);
-      startSequenceScroll();
-      animateAboutSection();
-      animateServicesSection();
-      animateVideoSliderSection(); 
-    }
-  });
-}
-
-
-  </script>
-  <script src="quote.js"></script>
- 
+        });
+    </script>
 </body>
 </html>
