@@ -1,0 +1,625 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Mutu Solutions</title>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+   <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js" crossorigin="anonymous"></script>
+
+  <style>
+    /* Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Inter', sans-serif;
+  color: #0d0d0d;
+}
+body {
+  background: #fff;
+  line-height: 1.6;
+}
+
+/* Navigation */
+.nav {
+  position: absolute;
+  top: 20px;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 80px;
+  z-index: 100;
+}
+.nav .logo {
+  font-size: 32px;
+  font-weight: 700;
+  color: white;
+}
+.nav ul {
+  display: flex;
+  gap: 40px;
+  list-style: none;
+  color: white;
+  font-size: 15px;
+}
+.nav ul li {
+  position: relative;
+  cursor: pointer;
+}
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 30px;
+  left: 0;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 15px 20px;
+  border-radius: 8px;
+  list-style: none;
+  width: 160px;
+}
+.dropdown:hover .dropdown-menu {
+  display: block;
+}
+.dropdown-menu li {
+  padding: 8px 0;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+/* Hero Section */
+.hero {
+  width: 100%;
+  height: 680px;
+  background: url('https://images.unsplash.com/photo-1504556106489-61b44a0a6b16') center/cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.hero h1 {
+  font-size: 48px;
+  font-weight: 700;
+  color: white;
+  text-align: center;
+}
+.hero span {
+  color: #27d3ff;
+}
+
+/* Intro */
+.intro {
+  padding: 100px 200px;
+  font-size: 24px;
+  text-align: center;
+  max-width: 1000px;
+  margin: auto;
+}
+
+/* Feature block */
+.feature-block {
+  padding: 150px 200px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 60px;
+}
+.feature-block .text {
+  font-size: 20px;
+  width: 240px;
+  opacity: 0.7;
+}
+.feature-block .box {
+  width: 450px;
+  height: 300px;
+  background: #000;
+  border-radius: 40px 10px 40px 10px;
+}
+.btn {
+  padding: 12px 30px;
+  background: #27d3ff;
+  border: none;
+  border-radius: 8px;
+  font-size: 15px;
+  cursor: pointer;
+  margin-left: auto;
+}
+
+/* Logistics Section */
+.logistics {
+  padding: 100px 200px;
+  text-align: center;
+}
+.logistics-wrapper {
+  margin-top: 80px;
+  display: flex;
+  gap: 80px;
+  align-items: center;
+}
+.logistics-box {
+  width: 420px;
+  height: 320px;
+  background: #000;
+  border-radius: 40px 10px 40px 10px;
+}
+.logistics-text {
+  max-width: 500px;
+  text-align: left;
+}
+.logistics-text h3 {
+  font-size: 28px;
+  margin-bottom: 15px;
+}
+
+/* Process Section */
+.process {
+  padding: 150px 200px;
+}
+.process h3 {
+  font-size: 28px;
+  margin-bottom: 15px;
+}
+.link {
+  color: #27d3ff;
+  font-size: 16px;
+  text-decoration: none;
+}
+
+/* Demo Section */
+.demo {
+  background: #003d56;
+  padding: 150px 200px;
+  color: white;
+}
+.demo-card h2 {
+  font-size: 32px;
+  margin-bottom: 20px;
+}
+
+/* Contact Section */
+.contact {
+  padding: 120px 200px;
+  display: flex;
+  justify-content: space-between;
+  gap: 120px;
+}
+.quote h2 {
+  font-size: 32px;
+  margin: 10px 0;
+}
+.form {
+  width: 380px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+.form input,
+.form textarea {
+  padding: 10px;
+  border: none;
+  border-bottom: 1px solid #bbb;
+  outline: none;
+}
+.form textarea {
+  height: 120px;
+  resize: none;
+}
+.form button {
+  width: 120px;
+  padding: 10px;
+  background: #27d3ff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+
+  </style>
+</head>
+<body>
+<li>Trip Service</li>
+<li>Shipping Services</li>
+</ul>
+</li>
+<li>Solutions Demo</li>
+<li>Pricing</li>
+<li>About</li>
+<li>Contact</li>
+</ul>
+</nav>
+</header>
+
+
+<!-- Hero Section -->
+<section class="hero">
+<div class="hero-content">
+<h1>Digital Transformation for <span>Logistics Leaders.</span></h1>
+</div>
+</section>
+
+
+<!-- Intro Text -->
+<section class="intro">
+<p>MUTU Solutions delivers seamless logistics, integrating ground, air, and warehousing to make your supply chain visible and efficient.</p>
+</section>
+
+
+<!-- Feature Slider Placeholder -->
+<section class="feature-block">
+<div class="text">Optimises fleet management and delivery routes</div>
+<div class="box"></div>
+<button class="btn">Our Services →</button>
+</section>
+
+
+<!-- Logistics Section -->
+<section class="logistics">
+<h2>Empowering Your Business with Tailored Logistics Solutions.</h2>
+<div class="logistics-wrapper">
+<div class="logistics-box"></div>
+<div class="logistics-text">
+<h3>Intelligent ground transportation network.</h3>
+<p>Deliver exceptional customer experiences with our agile last-mile delivery network...</p>
+</div>
+</div>
+</section>
+
+
+<!-- Process Section -->
+<section class="process">
+<h3>How we simplify your process?</h3>
+<a class="link" href="#">Try our solution demo →</a>
+</section>
+
+
+<!-- Demo Section -->
+<section class="demo">
+<div class="demo-card">
+<h2>Solution demo.</h2>
+<p>Watch our product demo to see how MUTU Solutions can transform your logistics operations.</p>
+</div>
+</section>
+
+
+<!-- Contact Section -->
+<section class="contact">
+<div class="quote">
+<h3>Request a free Quote:</h3>
+<h2>Let's build something extraordinary together.</h2>
+<a href="#">Contact us →</a>
+</div>
+
+
+<form class="form">
+<h3>Hello!</h3>
+<input type="text" placeholder="What should we call you?" />
+<input type="email" placeholder="Where can we email you?" />
+<input type="text" placeholder="A number we can buzz" />
+<textarea placeholder="Drop your message here"></textarea>
+<button class="btn">Send →</button>
+</form>
+</section>
+
+
+
+  
+
+
+  <script>
+    const hamburger = document.getElementById('hamburger');
+    const navMenu = document.getElementById('navMenu');
+
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('active');
+      navMenu.classList.toggle('open');
+    });
+
+   (function () {
+      gsap.registerPlugin(ScrollTrigger);
+
+      const frameCount = 125;
+      const framePath = i => `images/frame_${String(i).padStart(4,'0')}.jpg`;
+      const images = [];
+      let loadedCount = 0;
+
+      const canvas = document.getElementById('sequence');
+      const ctx = canvas.getContext('2d');
+      const loader = document.querySelector('.loader');
+      const progressText = document.getElementById('progress-text');
+      const text1 = document.getElementById('text1');
+      const text2 = document.getElementById('text2');
+      const text3 = document.getElementById('text3');
+
+      const texts = [
+        { element: text1, content: 'Digital Transformation' },
+        { element: text2, content: 'For Logistics Leaders' },
+        { element: text3, content: 'Built on ServiceNow' }
+      ];
+
+      texts.forEach(({ element, content }) => {
+        element.innerHTML = '';
+        content.split('').forEach(char => {
+          const span = document.createElement('span');
+          span.textContent = char === ' ' ? '\u00A0' : char;
+          element.appendChild(span);
+        });
+      });
+
+      const letters1 = text1.querySelectorAll('span');
+      const letters2 = text2.querySelectorAll('span');
+      const letters3 = text3.querySelectorAll('span');
+
+      function sizeCanvas() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+      }
+      sizeCanvas();
+
+      function drawImageScaled(img) {
+        if (!img) return;
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        const scale = Math.max(canvas.width / img.width, canvas.height / img.height);
+        const w = img.width * scale;
+        const h = img.height * scale;
+        const x = (canvas.width - w) / 2;
+        const y = (canvas.height - h) / 2;
+        ctx.drawImage(img, x, y, w, h);
+      }
+
+    async function preloadAll() {
+      const promises = [];
+      for (let i = 1; i <= frameCount; i++) {
+        const url = framePath(i);
+        const p = fetch(url)
+          .then(r => r.blob())
+          .then(blob => createImageBitmap(blob))
+          .then(bitmap => {
+            images[i] = bitmap;
+            loadedCount++;
+            progressText.textContent = `Loading ${Math.round(loadedCount / frameCount * 100)}%`;
+          })
+          .catch(err => console.error('frame load error', url, err));
+        promises.push(p);
+      }
+      await Promise.all(promises);
+      onAllLoaded();
+    }
+
+    function onAllLoaded() {
+      gsap.to(loader, {
+        opacity: 0,
+        duration: 0.6,
+        ease: 'power2.out',
+        onComplete() {
+          loader.style.display = 'none';
+          drawImageScaled(images[1]);
+
+          // Initialize all animations in order
+          startSequenceScroll();
+          animateAboutSection();
+          animateServicesSection();
+
+          setTimeout(() => {
+            animateVideoSliderSection();
+          }, 800);
+        }
+      });
+    }
+
+  function startSequenceScroll() {
+    const frameObj = { index: 1 };
+    const scrollLength = frameCount * 22; //scroll speed
+
+    gsap.to(frameObj, {
+      index: frameCount,
+      ease: "none",
+      snap: v => Math.round(v),
+      scrollTrigger: {
+        trigger: '.canvas-wrapper',
+        start: "top top",
+        end: "+=" + scrollLength,
+        scrub: 0.6,
+        pin: true,
+        anticipatePin: 1,
+        onUpdate: self => {
+          const idx = Math.min(Math.max(Math.round(frameObj.index), 1), frameCount);
+          drawImageScaled(images[idx]);
+
+          const progress = self.progress;
+
+          if (progress < 0.05) {
+            text1.style.opacity = 0; text2.style.opacity = 0; text3.style.opacity = 0;
+          } else if (progress < 0.35) {
+            text1.style.opacity = 1; text2.style.opacity = 0; text3.style.opacity = 0;
+            const localProgress = (progress - 0.05) / 0.3;
+            letters1.forEach((letter, i) => {
+              letter.style.opacity = localProgress > i / letters1.length ? 1 : 0;
+            });
+          } else if (progress < 0.68) {
+            text1.style.opacity = 0; text2.style.opacity = 1; text3.style.opacity = 0;
+            const localProgress = (progress - 0.35) / 0.33;
+            letters2.forEach((letter, i) => {
+              letter.style.opacity = localProgress > i / letters2.length ? 1 : 0;
+            });
+          } else {
+            text1.style.opacity = 0; text2.style.opacity = 0; text3.style.opacity = 1;
+            const localProgress = (progress - 0.68) / 0.32;
+            letters3.forEach((letter, i) => {
+              letter.style.opacity = localProgress > i / letters3.length ? 1 : 0;
+            });
+          }
+        },
+        onLeave: () => {
+          drawImageScaled(images[frameCount]);
+          gsap.to([text1, text2, text3], {
+            opacity: 0,
+            duration: 0.3
+          });
+        },
+        onEnterBack: () => {
+          text3.style.opacity = 1;
+        }
+      }
+    });
+  }
+
+  function animateAboutSection() {
+    const aboutSection = document.querySelector('.about');
+
+    gsap.to(aboutSection, {
+      opacity: 1,
+      y: 0,
+      duration: 1.2,
+      ease: 'power3.out',
+      scrollTrigger: {
+        trigger: '.about-container',
+        start: 'top 80%',
+        end: 'top 20%',
+        toggleActions: 'play none none reverse'
+      }
+    });
+  }
+
+  function animateServicesSection() {
+    const serviceItems = document.querySelectorAll('.service-item');
+    const videos = document.querySelectorAll('.video-container video');
+    const totalServices = serviceItems.length;
+    let currentIndex = 0;
+
+    serviceItems[0].classList.add('active');
+    videos[0].classList.add('active');
+    videos[0].play();
+
+    const scrollDistance = window.innerHeight * 0.8;
+    const speedMultiplier = 0.3; // Lower = faster scrolling (0.1-1.0)
+    const totalScrollDistance = (scrollDistance * (totalServices - 1)) * speedMultiplier;
+
+    ScrollTrigger.create({
+      trigger: '.services',
+      start: 'top top',
+      end: `+=${totalScrollDistance}`,
+      pin: '.services-container',
+      onUpdate: (self) => {
+        const progress = self.progress;
+        const newIndex = Math.min(Math.floor(progress * totalServices), totalServices - 1);
+        
+        if (newIndex !== currentIndex) {
+          switchService(newIndex);
+        }
+      },
+      onEnter: () => {
+        if (videos[currentIndex]) {
+          videos[currentIndex].play();
+        }
+      }
+    });
+
+    function switchService(newIndex) {
+      const oldIndex = currentIndex;
+      
+      serviceItems.forEach((item, index) => {
+        item.classList.remove('active', 'prev', 'next');
+        
+        if (index === newIndex) {
+          item.classList.add('active');
+        } else if (index < newIndex) {
+          item.classList.add('prev');
+        } else {
+          item.classList.add('next');
+        }
+      });
+
+      videos.forEach(video => {
+        video.classList.remove('active');
+        video.pause();
+      });
+      
+      videos[newIndex].classList.add('active');
+      videos[newIndex].currentTime = 0;
+      videos[newIndex].play();
+
+      currentIndex = newIndex;
+    }
+  }
+
+  let resizeTimeout;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(() => {
+      sizeCanvas();
+      ScrollTrigger.refresh(true);
+      const currentFrame = Math.round(frameObj?.index || 1);
+      drawImageScaled(images[currentFrame]);
+    }, 120);
+  });
+
+  preloadAll();
+})();
+
+function animateVideoSliderSection() {
+  const videos = document.querySelectorAll('.video-slider video');
+  const texts = document.querySelectorAll('.text-item');
+  const section = document.querySelector('.video-slider-container');
+  const totalSlides = videos.length;
+
+  videos[0].classList.add('active');
+  texts[0].classList.add('active');
+  videos[0].play();
+
+  const speedFactor = 0.3; // Lower = faster (0.1-1.0)
+  const scrollDistance = window.innerHeight * (totalSlides - 1) * speedFactor;
+
+  ScrollTrigger.create({
+    trigger: section,
+    start: "top top",
+    end: `+=${scrollDistance}`,
+    pin: true,
+    scrub: 1,
+    onUpdate: (self) => {
+      const progress = self.progress;
+      const newIndex = Math.min(Math.floor(progress * totalSlides), totalSlides - 1);
+
+      videos.forEach((video, i) => {
+        if (i === newIndex) {
+          if (!video.classList.contains("active")) {
+            videos.forEach(v => { v.pause(); v.classList.remove("active"); });
+            texts.forEach(t => t.classList.remove("active"));
+            video.classList.add("active");
+            texts[newIndex].classList.add("active");
+            video.currentTime = 0;
+            video.play();
+          }
+        }
+      });
+    },
+    onEnter: () => videos[0].play(),
+    onLeave: () => videos.forEach(v => v.pause())
+  });
+}
+
+function onAllLoaded() {
+  gsap.to(loader, {
+    opacity: 0,
+    duration: 0.6,
+    ease: 'power2.out',
+    onComplete() {
+      loader.style.display = 'none';
+      drawImageScaled(images[1]);
+      startSequenceScroll();
+      animateAboutSection();
+      animateServicesSection();
+      animateVideoSliderSection(); 
+    }
+  });
+}
+
+
+  </script>
+  <script src="quote.js"></script>
+ 
+</body>
+</html>
