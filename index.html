@@ -1422,6 +1422,46 @@
     height: 16px;
 }
 
+/* Responsive for Mobile / Tablet */
+@media (max-width: 798px) {
+
+    .demo-section {
+        grid-template-columns: 1fr;   /* Stack vertically */
+        min-height: auto;
+    }
+
+    /* GIF top section */
+    .demo-left {
+        padding: 20px;
+        order: 1;
+    }
+
+    .demo-left img {
+        width: 100%;
+        border-radius: 0 0 40px 0;  /* Rounded bottom-right like your sample */
+    }
+
+    /* Text section */
+    .demo-right {
+        padding: 40px 30px;
+        order: 2;
+        text-align: left;
+    }
+
+    .demo-right h2 {
+        font-size: 2rem;
+        margin-bottom: 20px;
+    }
+
+    .demo-right p {
+        font-size: 0.95rem;
+        margin-bottom: 25px;
+    }
+
+    .demo-link {
+        font-size: 0.95rem;
+    }
+}
 
 
 
@@ -1737,7 +1777,7 @@
 <section class="demo-section" id="demo">
     <!-- LEFT GIF -->
     <div class="demo-left">
-        <img src="./assets/demodashboard.gif" alt="Demo GIF">
+        <img src="./assets/sampledemo1.gif" alt="Demo GIF">
     </div>
 
     <!-- RIGHT TEXT -->
@@ -1745,7 +1785,7 @@
         <h2>Solution demo.</h2>
         <p>Watch our product demo to see how MUTU Solutions can transform your logistics operations.</p>
 
-        <a href="./assets/demodashboard.gif" class="demo-link">
+        <a href="./assets/demosamplescreen.mp4" class="demo-link">
             Watch the videos
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" 
                  stroke-linecap="round" stroke-linejoin="round">
