@@ -1386,15 +1386,15 @@
       .video-box {
         width: 50vh;
         height: 260px;
-    }  
+      }  
 
-    .process-section {
-        grid-template-columns: 1fr; 
-    }
+      .process-section {
+          grid-template-columns: 1fr; 
+      }
 
-    .first-para {
-        margin-top: 40px;
-    }
+      .first-para {
+          margin-top: 40px;
+      }
       
     }
 
@@ -1405,7 +1405,7 @@
 
     @media (max-width: 998px) {
   .services-container {
-    padding: 40px 20px;
+    padding: 0px 0px 0 0;
   }
 
   .services-content {
@@ -1565,6 +1565,7 @@
       }
       .video-container video {        
         border-radius: 0;
+        clip-path: polygon(20% 0%, 100% 0, 100% 20%, 100% 100%, 100% 100%, 25% 100%, 0 70%, 0 0);
       }
     }
 
@@ -1693,7 +1694,8 @@
       }
 
       .services-container {
-        padding: 40px 15px;
+        padding: 0px 0px;
+        
       }
       .service-item h2 {
         margin-top: -100px;
@@ -1707,8 +1709,11 @@
         height: 300px;
       }
 
-      .video-container {
-        border-radius: 15px;
+      .video-container video {
+        
+      }
+      .navigation-arrows {
+        margin-top: 20px;
       }
 
       .service-item h2 {
